@@ -1,6 +1,5 @@
 {
-  "name": "@example/basics",
-  "type": "module",
+  "name": "portfolio",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -12,5 +11,22 @@
   },
   "dependencies": {
     "astro": "^1.6.0"
+  },
+  "devDependencies": {
+    "@markuplint/astro-parser": "^2.2.2",
+    "@typescript-eslint/eslint-plugin": "^5.42.1",
+    "@typescript-eslint/parser": "^5.42.1",
+    "eslint": "^8.27.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-astro": "^0.21.0",
+    "eslint-plugin-import": "^2.26.0",
+    "markuplint": "^2.11.0",
+    "postcss-html": "^1.5.0",
+    "prettier": "^2.7.1",
+    "stylelint": "^14.14.1",
+    "stylelint-config-html": "^1.1.0",
+    "stylelint-config-prettier": "^9.0.4",
+    "stylelint-config-recess-order": "^3.0.0",
+    "stylelint-config-recommended-scss": "^8.0.0"
   }
 }

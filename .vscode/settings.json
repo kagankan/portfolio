@@ -1,0 +1,55 @@
+{
+  "path-intellisense.mappings": {
+    "@/": "${workspaceFolder}/src/",
+  },
+  "name-that-color.variablePrefix": "color-",
+  // NOTE: 各ユーザーが言語個別に規定のフォーマッタを設定している場合、そちらが優先されてしまうため、言語別に設定することとする
+  // "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "stylelint.validate": [
+    "css",
+    "scss",
+    "astro",
+  ],
+  "[scss]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": true,
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+  },
+  "eslint.validate": [
+    "javascript",
+    "typescript",
+    "astro",
+  ],
+  // NOTE: 複数言語を同時に指定できるのは1.63以降の機能
+  // @see https://code.visualstudio.com/updates/v1_63#_multiple-language-specific-editor-settings
+  "[javascript][typescript]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.eslint": true
+    },
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+  },
+  // 複数指定ではユーザー設定が上書きできないらしい・・・
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[astro]": {
+    "editor.codeActionsOnSave": {
+      "source.fixAll.stylelint": true,
+      "source.fixAll.eslint": true,
+    },
+    "editor.defaultFormatter": "astro-build.astro-vscode",
+    "editor.formatOnSave": true,
+  },
+  "cSpell.words": [
+    "astro",
+    "astrojs",
+    "markuplint",
+    "stylelint"
+  ],
+  "cSpell.enableFiletypes": [
+    "astro"
+  ],
+}

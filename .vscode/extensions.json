@@ -1,4 +1,13 @@
 {
-  "recommendations": ["astro-build.astro-vscode"],
+  "recommendations": [
+    "astro-build.astro-vscode",
+    "streetsidesoftware.code-spell-checker",
+    "editorconfig.editorconfig",
+    "dbaeumer.vscode-eslint",
+    "yusukehirao.vscode-markuplint",
+    "stylelint.vscode-stylelint",
+    "christian-kohler.path-intellisense",
+    "guillaumedoutriaux.name-that-color"
+  ],
   "unwantedRecommendations": []
 }
