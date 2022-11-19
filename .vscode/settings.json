@@ -46,9 +46,11 @@
   "cSpell.words": [
     "astro",
     "astrojs",
+    "destyle",
     "markuplint",
     "scaffdog",
-    "stylelint"
+    "stylelint",
+    "tailwindcss"
   ],
   "cSpell.enableFiletypes": [
     "astro"

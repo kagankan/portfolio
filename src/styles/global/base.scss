@@ -1,0 +1,20 @@
+html {
+  line-height: 1;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+summary {
+  list-style: none;
+  cursor: pointer;
+  &::-webkit-details-marker {
+    display: none;
+  }
+}
+
+select {
+  cursor: pointer;
+}

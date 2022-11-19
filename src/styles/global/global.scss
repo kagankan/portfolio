@@ -1,0 +1,42 @@
+// 変数・mixinなど、CSSを出力しない記述をする
+
+// メディアクエリ
+$breakpoints: (
+  medium: 768,
+);
+@mixin pc {
+  @media screen and (min-width: #{map-get($breakpoints, medium) + 0.02}px), print {
+    @content;
+  }
+}
+@mixin sp {
+  @media screen and (max-width: #{map-get($breakpoints, medium)}px) {
+    @content;
+  }
+}
+
+// ホバー条件
+// その要素がホバーされる場合
+@mixin hover {
+  @media (hover: hover) {
+    &:where(:any-link, :enabled):hover {
+      @content;
+    }
+  }
+}
+// 親のクリッカブル要素がホバーされる場合
+@mixin group-hover {
+  @media (hover: hover) {
+    :where(:any-link, :enabled):hover & {
+      @content;
+    }
+  }
+}
+
+// 色
+// $color-midnight-blue: #001e62; // 例
+
+// z-index
+// $z-index: (
+//   local-nav-pc: 10, // 例
+// );

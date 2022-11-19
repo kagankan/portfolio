@@ -1,5 +1,5 @@
+import tailwind from "@astrojs/tailwind";
 import { defineConfig } from "astro/config";
-import autoprefixer from "autoprefixer";
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,9 +17,6 @@ export default defineConfig({
       },
     },
     css: {
-      postcss: {
-        plugins: [autoprefixer],
-      },
       preprocessorOptions: {
         scss: {
           // TODO: importもしつつ、astroに直接書いてもエラーにならないようにしたい（そもそもastro側の問題？）
@@ -31,4 +28,7 @@ export default defineConfig({
       },
     },
   },
+  integrations: [
+    tailwind({ config: { applyBaseStyles: false } }), // NOTE: autoprefixerも合わせて適用される
+  ],
 });

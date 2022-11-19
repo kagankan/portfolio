@@ -1,0 +1,29 @@
+{
+  "pc-mediaquery": {
+    "scope": "scss",
+    "prefix": "pc",
+    "body": [
+      "@include pc {",
+      "\t$1",
+      "}$0"
+    ]
+  },
+  "sp-mediaquery": {
+    "scope": "scss",
+    "prefix": "sp",
+    "body": [
+      "@include sp {",
+      "\t$1",
+      "}$0"
+    ]
+  },
+  "hover-mediaquery": {
+    "scope": "scss",
+    "prefix": "hover",
+    "body": [
+      "@include hover {",
+      "\t$1",
+      "}$0"
+    ]
+  },
+}

@@ -1,0 +1,8 @@
+// リセットCSSにはdestyle.cssを使用します。
+// 他のリセットCSSがブラウザ間
+@use "node_modules/destyle.css/destyle.css";
+
+@use "./global/base.scss";
+
+// ユーティリティクラス
+@use "node_modules/tailwindcss/utilities";
