@@ -59,4 +59,5 @@
   "cSpell.enableFiletypes": [
     "astro"
   ],
+  "typescript.tsdk": "node_modules\\typescript\\lib",
 }
