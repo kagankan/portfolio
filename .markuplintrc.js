@@ -1,8 +1,8 @@
 module.exports = {
   extends: ["markuplint:recommended"],
-  parser: {
-    ".astro$": "@markuplint/astro-parser",
-  },
+  // parser: {
+  //   ".astro$": "@markuplint/astro-parser",
+  // },
   rules: {
     "end-tag": true,
     "invalid-attr": {
