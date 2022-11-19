@@ -43,6 +43,10 @@
     "editor.defaultFormatter": "astro-build.astro-vscode",
     "editor.formatOnSave": true,
   },
+  "cSpell.dictionaries": [
+    "html",
+    "css"
+  ],
   "cSpell.words": [
     "astro",
     "astrojs",
