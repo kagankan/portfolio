@@ -47,6 +47,7 @@
     "astro",
     "astrojs",
     "markuplint",
+    "scaffdog",
     "stylelint"
   ],
   "cSpell.enableFiletypes": [

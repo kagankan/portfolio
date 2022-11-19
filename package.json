@@ -6,7 +6,7 @@
     "start": "astro dev",
     "build": "astro build && markuplint 'dist/**/*.html'",
     "preview": "astro preview",
-    "astro": "astro"
+    "new:component": "scaffdog generate component"
   },
   "dependencies": {
     "astro": "^1.6.0",
@@ -23,6 +23,7 @@
     "markuplint": "^2.11.0",
     "postcss-html": "^1.5.0",
     "prettier": "^2.7.1",
+    "scaffdog": "^2.4.0",
     "stylelint": "^14.14.1",
     "stylelint-config-html": "^1.1.0",
     "stylelint-config-prettier": "^9.0.4",
