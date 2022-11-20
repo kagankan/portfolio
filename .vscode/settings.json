@@ -51,6 +51,7 @@
     "astro",
     "astrojs",
     "destyle",
+    "gsap",
     "markuplint",
     "scaffdog",
     "stylelint",

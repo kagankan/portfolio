@@ -1,0 +1,24 @@
+---
+/**
+ * 「このクラス/データ属性をつけると、スクロールしたときにアニメーションされる」といった機能を作りたい。
+ * その場合、CSSとJSがセットで必要になる。
+ * （JSだけで処理するという手はあるが、処理の前に一瞬表示されてしまう問題を考慮すると、CSSも設定しておきたい）
+ * 1つのファイルで管理するため、templateなしのastroファイルの可能性を探る。
+ * HTMLは出力されないものの、CSS/JSのバンドルのためどこかでimportはしないといけないので、Layoutでimportする。
+ */
+---
+
+<style is:global>
+  [data-scroll-fade] {
+    opacity: 0;
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+  document.querySelectorAll("[data-scroll-fade]").forEach((element) => {
+    gsap.fromTo(element, { opacity: 0 }, { opacity: 1, scrollTrigger: element });
+  });
+</script>
