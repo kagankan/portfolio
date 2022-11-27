@@ -5,16 +5,6 @@ module.exports = {
   // },
   rules: {
     "end-tag": true,
-    "invalid-attr": {
-      option: {
-        attrs: {
-          // tailwind の : (コロン) を許可するため
-          class: {
-            type: "Any",
-          },
-        },
-      },
-    },
     // 対応が難しいため
     "require-accessible-name": false,
   },
