@@ -1,0 +1,64 @@
+<div class="LoadingScreen"></div>
+
+<style lang="scss">
+  .LoadingScreen {
+    --lattice-current: 0px;
+    --line-current: 0%;
+    --line-vertical: var(--line-current);
+    --line-horizontal: var(--line-current);
+    --line-color: #fff;
+
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(-30deg, rgb(118, 118, 224), rgb(98, 207, 98));
+    mask-composite: intersect;
+    mask-image: linear-gradient(
+        to bottom,
+        transparent var(--lattice-current),
+        #000 var(--lattice-current) calc(var(--lattice-size) - var(--lattice-current)),
+        transparent calc(var(--lattice-size) - var(--lattice-current))
+      ),
+      linear-gradient(
+        to right,
+        transparent var(--lattice-current),
+        #000 var(--lattice-current) calc(var(--lattice-size) - var(--lattice-current)),
+        transparent calc(var(--lattice-size) - var(--lattice-current))
+      );
+    mask-size: var(--lattice-size) var(--lattice-size);
+
+    // 縦線
+    &::before {
+      position: absolute;
+      inset: 0;
+      content: "";
+      background-image: linear-gradient(to right, var(--line-color) 1px, transparent 1px);
+      background-repeat: repeat no-repeat;
+      background-size: var(--lattice-size) var(--line-vertical);
+    }
+    // 横線
+    &::after {
+      position: absolute;
+      inset: 0;
+      content: "";
+      background-image: linear-gradient(var(--line-color) 1px, transparent 1px);
+      background-repeat: no-repeat repeat;
+      background-size: var(--line-horizontal) var(--lattice-size);
+    }
+  }
+</style>
+
+<script>
+  import { gsap, Power1, Expo } from "gsap";
+  const latticeSize = 120;
+  gsap
+    .timeline()
+    .set(".LoadingScreen", { "--lattice-size": `${latticeSize}px` })
+    .fromTo(".LoadingScreen", { "--line-current": "0%" }, { "--line-current": "100%", ease: Power1.easeInOut }, "+=0.2")
+    .fromTo(
+      ".LoadingScreen",
+      { "--lattice-current": "0px" },
+      { "--lattice-current": `${latticeSize / 2}px`, duration: 0.8, ease: Expo.easeIn },
+      "-=0.2"
+    )
+    .fromTo(".LoadingScreen", { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.6 }, "<+=0.4");
+</script>
