@@ -1,4 +1,5 @@
 ---
+import Bar from "../components/Bar.astro";
 import Card from "../components/Card.astro";
 import LoadingScreen from "../components/LoadingScreen.astro";
 import Layout from "../layouts/Layout.astro";
@@ -7,6 +8,9 @@ import Layout from "../layouts/Layout.astro";
 <Layout title="Welcome to Astro.">
   <main>
     <h1>Sample</h1>
+    <Bar value={10} />
+    <Bar value={50} />
+    <Bar value={100} />
   </main>
   <LoadingScreen />
 </Layout>
