@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "@astrojs/tailwind": "^2.1.2",
-    "astro": "^1.6.0",
+    "astro": "^1.6.14",
     "autoprefixer": "^10.4.13",
     "destyle.css": "^4.0.0",
     "gsap": "^3.11.3",
@@ -28,7 +28,7 @@
     "eslint-plugin-import": "^2.26.0",
     "markuplint": "^2.11.2",
     "postcss-html": "^1.5.0",
-    "prettier": "^2.7.1",
+    "prettier": "^2.8.1",
     "scaffdog": "^2.4.0",
     "stylelint": "^14.14.1",
     "stylelint-config-html": "^1.1.0",
