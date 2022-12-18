@@ -1,0 +1,81 @@
+---
+import { randomUUID } from "node:crypto";
+export type Props = {
+  name: string;
+  /** 0~100 */
+  value: number;
+  term: string;
+};
+const { name, value, term } = Astro.props;
+const id = randomUUID();
+---
+
+<div class="SkillCard" style={{ "--value": value }}>
+  <img src="https://placehold.jp/150x150.png" alt="" />
+  <div>
+    <div class="SkillCard__Head">
+      <h3>{name}</h3>
+      <p>{term}</p>
+    </div>
+    <div class="SkillCard__Value">
+      <label for={id}>親密度</label><meter id={id} value={value} min="0" max="100" title="%"></meter><span
+        >{value}%</span
+      >
+    </div>
+  </div>
+</div>
+
+<style lang="scss">
+  .SkillCard {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    column-gap: 10px;
+    align-items: center;
+    padding: 24px;
+    background-color: var(--color-background-overlay);
+  }
+  .SkillCard__Head {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: space-between;
+  }
+  h3 {
+    font-weight: bold;
+    color: var(--color-blue);
+  }
+  .SkillCard__Value {
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    column-gap: 20px;
+    margin-top: 20px;
+  }
+  meter {
+    width: 100%;
+    // 背景
+    // Firefoxではmeter自体が背景、Chromeでは-webkit-meter-barが背景
+    @mixin bar {
+      height: 20px;
+      background: #fff;
+      border: 1px solid #999;
+      border-radius: 9999px;
+    }
+    @-moz-document url-prefix() {
+      @include bar;
+    }
+    &::-webkit-meter-bar {
+      @include bar;
+    }
+    // 棒
+    @mixin value {
+      background-image: linear-gradient(to right, var(--color-blue), var(--color-green));
+      background-size: calc((100 / var(--value)) * 100%);
+      border-radius: inherit;
+    }
+    &::-webkit-meter-optimum-value {
+      @include value;
+    }
+    &::-moz-meter-bar {
+      @include value;
+    }
+  }
+</style>
