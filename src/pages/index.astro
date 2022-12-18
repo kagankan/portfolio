@@ -9,20 +9,39 @@ import Layout from "@/layouts/Layout.astro";
 <Layout title="Welcome to Astro.">
   <main>
     <h1>Sample</h1>
-    <SkillCard name="HTML" value={10} term="2 years" />
-    <SkillCard name="HTML" value={50} term="2 years" />
-    <SkillCard name="HTML" value={100} term="2 years" />
+    <section>
+      <div class="StickyLabel" aria-hidden="true" data-visual-only="Skill Set"></div>
+      <div class="SkillSetBackground">
+        <h2>
+          <div aria-hidden="true" data-visual-only="Skill Set"></div>
+          スキルセット
+        </h2>
+        <p>
+          ここに補足分入れたいです。ほにゃほにゃにゃ。<br
+          />新しいツールを積極的に取り入れてます。とくにツールとの親密度を基準に得意なスキルを<br
+          />記載しました。てきなやつです。
+        </p>
+        <ul class="SkillSetList">
+          <li><SkillCard name="HTML" value={10} term="2 years" /></li>
+          <li><SkillCard name="HTML" value={50} term="2 years" /></li>
+          <li><SkillCard name="HTML" value={100} term="2 years" /></li>
+          <li><SkillCard name="HTML" value={100} term="2 years" /></li>
+          <li><SkillCard name="HTML" value={100} term="2 years" /></li>
+          <li><SkillCard name="HTML" value={100} term="2 years" /></li>
+          <li><SkillCard name="HTML" value={100} term="2 years" /></li>
+          <li><SkillCard name="HTML" value={100} term="2 years" /></li>
+          <li><SkillCard name="HTML" value={100} term="2 years" /></li>
+          <li><SkillCard name="HTML" value={100} term="2 years" /></li>
+        </ul>
+      </div>
+    </section>
+
     <Img src={sampleImage} alt="" />
   </main>
   <!-- <LoadingScreen /> -->
 </Layout>
 
-<style>
-  main {
-    max-width: 60ch;
-    padding: 1.5rem;
-    margin: auto;
-  }
+<style lang="scss">
   h1 {
     margin: 0;
     font-size: 3rem;
@@ -54,10 +73,78 @@ import Layout from "@/layouts/Layout.astro";
   .instructions strong {
     color: rgb(var(--accent));
   }
-  .link-card-grid {
+  section {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(24ch, 1fr));
+    grid-template-columns: 10% 1fr;
+  }
+  .SkillSetBackground {
+    position: relative;
+    padding-right: 10%;
+    padding-bottom: 40px;
+    padding-left: 5%;
+    &::before,
+    &::after {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      display: block;
+      min-width: 1500px;
+      content: "";
+    }
+    &::before {
+      clip-path: polygon(100% 0%, 0% 50%, 100% 90%);
+      background-image: linear-gradient(190deg, #0046b7, #a5e0e5, #ffffff);
+    }
+    &::after {
+      clip-path: polygon(0% 100%, 0% 50%, 100% 90%, 100% 100%);
+      background-image: linear-gradient(190deg, #ffffff 50%, #a5ffe3, #54d398);
+    }
+  }
+  .StickyLabel {
+    position: sticky;
+    top: 0;
+    align-self: start;
+    justify-self: end;
+    padding-top: 100px;
+    padding-right: 10px;
+    color: #0046b7;
+    border-right: currentColor 1px solid;
+    &::before {
+      display: block;
+      writing-mode: vertical-lr;
+      transform: rotate(180deg);
+    }
+  }
+  [data-visual-only] {
+    &::before {
+      // HTML単体で表示した場合（CSSが適用されない場合）に表示しない要素のため、contentで表示
+      content: attr(data-visual-only);
+    }
+  }
+  h2 {
+    position: relative;
+    padding: 2em 1em 1em 1em;
+    font-size: 2rem;
+    font-weight: bold;
+    color: #0046b7;
+    [data-visual-only] {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      font-size: 3em;
+      color: #62f7c5;
+      opacity: 0.4;
+    }
+  }
+  p {
+    line-height: 2;
+    color: #0046b7;
+  }
+  .SkillSetList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 20em), 1fr));
     gap: 1rem;
-    padding: 0;
+    margin-top: 40px;
   }
 </style>
