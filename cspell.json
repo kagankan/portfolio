@@ -4,7 +4,8 @@
   "ignorePaths": [],
   "dictionaries": [
     "html",
-    "css"
+    "css",
+    "typescript"
   ],
   "words": [
     "astro",
@@ -14,7 +15,8 @@
     "markuplint",
     "scaffdog",
     "stylelint",
-    "tailwindcss"
+    "tailwindcss",
+    "vite"
   ],
   "enableFiletypes": [
     "astro"
