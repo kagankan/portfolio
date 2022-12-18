@@ -11,7 +11,9 @@ const id = randomUUID();
 ---
 
 <div class="SkillCard" style={{ "--value": value }}>
-  <img src="https://placehold.jp/150x150.png" alt="" />
+  <div>
+    <img src="https://placehold.jp/150x150.png" alt="" />
+  </div>
   <div>
     <div class="SkillCard__Head">
       <h3>{name}</h3>
@@ -27,12 +29,22 @@ const id = randomUUID();
 
 <style lang="scss">
   .SkillCard {
-    display: grid;
-    grid-template-columns: 80px 1fr;
-    column-gap: 10px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
     align-items: center;
+    justify-content: center;
     padding: 24px;
     background-color: var(--color-background-overlay);
+
+    :nth-child(1) {
+      flex-basis: 80px;
+    }
+    :nth-child(2) {
+      flex-basis: 0;
+      flex-grow: 9999;
+      min-width: 70%;
+    }
   }
   .SkillCard__Head {
     display: grid;
