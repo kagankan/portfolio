@@ -1,5 +1,6 @@
 ---
 import { randomUUID } from "node:crypto";
+import Img from "./Img.astro";
 export type Props = {
   name: string;
   /** 0~100 */
@@ -12,15 +13,15 @@ const id = randomUUID();
 
 <div class="SkillCard" style={{ "--value": value }}>
   <div>
-    <img src="https://placehold.jp/150x150.png" alt="" />
+    <Img src="https://placehold.jp/150x150.png" alt="" />
   </div>
   <div>
     <div class="SkillCard__Head">
-      <h3>{name}</h3>
-      <p>{term}</p>
+      <h3 class="SkillCard__Heading">{name}</h3>
+      <p class="SkillCard__Term">{term}</p>
     </div>
     <div class="SkillCard__Value">
-      <label for={id}>親密度</label><meter id={id} value={value} min="0" max="100" title="%"></meter><span
+      <label for={id}>親密度</label><meter id={id} value={value} min="0" max="100" title={`${value}%`}></meter><span
         >{value}%</span
       >
     </div>
@@ -31,16 +32,16 @@ const id = randomUUID();
   .SkillCard {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 10px 20px;
     align-items: center;
     justify-content: center;
     padding: 24px;
     background-color: var(--color-background-overlay);
 
-    :nth-child(1) {
-      flex-basis: 80px;
+    > :nth-child(1) {
+      flex-basis: 88px;
     }
-    :nth-child(2) {
+    > :nth-child(2) {
       flex-basis: 0;
       flex-grow: 9999;
       min-width: 70%;
@@ -49,26 +50,39 @@ const id = randomUUID();
   .SkillCard__Head {
     display: grid;
     grid-auto-flow: column;
+    align-items: baseline;
     justify-content: space-between;
   }
-  h3 {
-    font-weight: bold;
+  .SkillCard__Heading {
+    font-size: 1.125rem;
+    font-weight: 700;
+    color: var(--color-blue);
+  }
+  .SkillCard__Term {
+    font-size: 0.875rem;
     color: var(--color-blue);
   }
   .SkillCard__Value {
     display: grid;
     grid-template-columns: auto 1fr auto;
     column-gap: 20px;
-    margin-top: 20px;
+    align-items: center;
+    margin-block-start: 10px;
+  }
+  label {
+    font-size: 0.875rem;
+    font-weight: 700;
   }
   meter {
+    --meter-height: 20px;
     width: 100%;
+    height: var(--meter-height);
     // 背景
     // Firefoxではmeter自体が背景、Chromeでは-webkit-meter-barが背景
     @mixin bar {
-      height: 20px;
+      height: var(--meter-height);
       background: #fff;
-      border: 1px solid #999;
+      border: none;
       border-radius: 9999px;
     }
     @-moz-document url-prefix() {
@@ -79,7 +93,7 @@ const id = randomUUID();
     }
     // 棒
     @mixin value {
-      background-image: linear-gradient(to right, var(--color-blue), var(--color-green));
+      background-image: linear-gradient(to right, var(--color-blue) 10%, #00b7ae, var(--color-green) 90%);
       background-size: calc((100 / var(--value)) * 100%);
       border-radius: inherit;
     }

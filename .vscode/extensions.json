@@ -7,7 +7,8 @@
     "yusukehirao.vscode-markuplint",
     "stylelint.vscode-stylelint",
     "christian-kohler.path-intellisense",
-    "guillaumedoutriaux.name-that-color"
+    "guillaumedoutriaux.name-that-color",
+    "vunguyentuan.vscode-css-variables"
   ],
   "unwantedRecommendations": []
 }

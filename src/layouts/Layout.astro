@@ -16,16 +16,29 @@ const { title } = Astro.props;
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <!--
+      NOTE: WebフォントはCSSファイルでimportせず、linkタグで読み込む。
+      非同期で読み込むことができ、かつ読み込みの最適化が適用されるため。
+      https://blog.ikunaga.net/entry/google-japanese-font-speed-up-method/
+    -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href={"https://fonts.googleapis.com/css2?family=Titillium+Web:wght@700&amp;family=Noto+Sans+JP&amp;display=swap"}
+      rel="stylesheet"
+    />
   </head>
   <body>
     <ScrollFade />
     <slot />
-    <!--
+    {
+      /*
     NOTE: Astroの仕様上は、styleタグはhtmlタグの外側（ルート）に配置して問題ないが、
     フォーマッタのバグでbody内に入ってしまう
     https://github.com/withastro/prettier-plugin-astro/issues/295
     →近々治りそう
-    -->
+     */
+    }
     <style is:global>
       :root {
         --accent: 124, 58, 237;

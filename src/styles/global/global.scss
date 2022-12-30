@@ -5,12 +5,12 @@ $breakpoints: (
   medium: 768,
 );
 @mixin pc {
-  @media screen and (min-width: #{map-get($breakpoints, medium) + 0.02}px), print {
+  @media screen and (min-width: #{map-get($breakpoints, medium) * 1px + 0.02px}), print {
     @content;
   }
 }
 @mixin sp {
-  @media screen and (max-width: #{map-get($breakpoints, medium)}px) {
+  @media screen and (max-width: #{map-get($breakpoints, medium) * 1px}) {
     @content;
   }
 }
@@ -19,7 +19,7 @@ $breakpoints: (
 // その要素がホバーされる場合
 @mixin hover {
   @media (hover: hover) {
-    &:where(:any-link, :enabled):hover {
+    &:where(:any-link, :enabled, summary):hover {
       @content;
     }
   }
@@ -27,7 +27,7 @@ $breakpoints: (
 // 親のクリッカブル要素がホバーされる場合
 @mixin group-hover {
   @media (hover: hover) {
-    :where(:any-link, :enabled):hover & {
+    :where(:any-link, :enabled, summary):hover & {
       @content;
     }
   }

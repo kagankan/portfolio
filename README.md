@@ -79,3 +79,25 @@ interfaceには予期しない上書きの可能性があるなどの危険が�
 // TODO: 今後やるべきことを書く
 // NOTE: 補足情報を書く
 ```
+
+## フォント検討
+
+Google FontsにFuturaがないので代替を検討
+
+https://fonts.google.com/specimen/Jost
+https://fonts.google.com/specimen/Roboto
+https://fonts.google.com/specimen/Heebo
+https://fonts.google.com/specimen/Kanit
+https://fonts.google.com/specimen/Work+Sans
+https://fonts.google.com/specimen/Titillium+Web
+https://fonts.google.com/specimen/Montserrat
+https://fonts.google.com/specimen/Inter
+
+## 変更箇所
+
+見出しテキストは変更
+
+見出しとテキストの色を変更
+（一貫したルールを持たせるため）
+
+

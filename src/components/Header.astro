@@ -1,0 +1,274 @@
+---
+const navId = "header-nav";
+---
+
+<header class="Header">
+  <button class="Header__NavToggle" data-header-nav-toggle aria-controls={navId} aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav id={navId}>
+    <ul class="Header__Links">
+      <li><a href="#hero" aria-current="true">トップ</a></li>
+      <li><a href="#about">自己紹介</a></li>
+      <li><a href="#skill">スキルセット</a></li>
+      <li><a href="#">実績</a></li>
+      <li><a href="">活動</a></li>
+    </ul>
+    <div class="Header__Controls">
+      <details>
+        <summary>アニメーション</summary>
+        <ul>
+          <li><button>オン</button></li>
+          <li><button>オフ</button></li>
+        </ul>
+      </details>
+      <details open>
+        <summary>テーマ</summary>
+        <ul>
+          <li><button>ライト</button></li>
+          <li><button>ダーク</button></li>
+          <li><button>OS設定</button></li>
+          <li><button data-header-style-off>CSSオフ</button></li>
+        </ul>
+      </details>
+    </div>
+  </nav>
+</header>
+
+<style lang="scss">
+  :root {
+    --header-height: 80px;
+  }
+  .Header {
+    position: sticky;
+    z-index: var(--z-index-header);
+    padding: 16px 5%;
+    background-color: var(--color-background);
+    background-image: line;
+    transition-duration: var(--transition-fast);
+    transition-property: box-shadow;
+    inset-block-start: 0;
+    min-block-size: var(--header-height);
+    @include pc {
+      display: grid;
+      align-items: center;
+    }
+    &.is-scroll {
+      box-shadow: var(--shadow-medium);
+    }
+
+    nav {
+      @include pc {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        align-items: center;
+        justify-content: space-between;
+      }
+    }
+  }
+
+  .Header__NavToggle {
+    @include pc {
+      display: none;
+    }
+    @include sp {
+      position: relative;
+      display: grid;
+      align-items: center;
+      min-width: 48px;
+      min-height: 48px;
+      padding-block-start: 24px;
+      margin-inline-start: auto;
+      text-align: center;
+      border-radius: 4px;
+      transition-duration: var(--transition-fast);
+      transition-property: background-color;
+      @include hover {
+        background-color: var(--color-blue-light);
+      }
+      &::after {
+        font-family: var(--font-family-emphasis);
+        font-size: 0.75rem;
+        content: "MENU";
+      }
+      > span {
+        position: absolute;
+        display: inline-block;
+        justify-self: center;
+        width: 45%;
+        height: 2px;
+        inset-block-start: 16px;
+        background-color: currentColor;
+        transition: transform 0.4s;
+        &:nth-of-type(1) {
+          transform: translateY(-6px);
+        }
+        &:nth-of-type(3) {
+          transform: translateY(6px);
+        }
+      }
+      &[aria-expanded="true"] {
+        &::after {
+          content: "CLOSE";
+        }
+        > span {
+          &:nth-of-type(1) {
+            transform: rotate(-45deg);
+          }
+          &:nth-of-type(2) {
+            opacity: 0;
+          }
+          &:nth-of-type(3) {
+            transform: rotate(45deg);
+          }
+        }
+      }
+    }
+  }
+
+  .Header__Links {
+    display: grid;
+    @include pc {
+      grid-auto-flow: column;
+      column-gap: 16px;
+      justify-content: start;
+    }
+    @include sp {
+      row-gap: 2px;
+    }
+    a {
+      display: block;
+      padding: 10px;
+      font-weight: 700;
+      transition-duration: var(--transition-fast);
+      transition-property: color, background-color;
+      &[aria-current] {
+        color: var(--color-blue);
+        @include pc {
+          border-block-start: 1px solid var(--color-blue);
+        }
+        @include sp {
+          border-inline-start: 1px solid var(--color-blue);
+        }
+      }
+      @include hover {
+        color: var(--color-background);
+        background-color: var(--color-blue);
+      }
+    }
+  }
+  .Header__Controls {
+    @include pc {
+      display: grid;
+      grid-auto-flow: column;
+      column-gap: 8px;
+    }
+
+    details {
+      position: relative;
+      summary {
+        padding: 8px 16px;
+        font-weight: 700;
+        border-radius: 9999px;
+        transition-duration: var(--transition-fast);
+        transition-property: color, background-color;
+        @include hover {
+          color: var(--color-background);
+          background-color: var(--color-blue);
+        }
+      }
+      ul {
+        @include pc {
+          position: absolute;
+          width: max-content;
+          min-width: 100%;
+          overflow: hidden;
+          background-color: var(--color-background);
+          border-radius: 8px;
+          box-shadow: var(--shadow-high);
+        }
+        li {
+          &:not(:first-child) {
+            &::before {
+              display: block;
+              width: calc(100% - 10px * 2);
+              height: 1px;
+              margin-inline: auto;
+              content: "";
+              background-color: rgb(0, 0, 0, 0.3);
+            }
+          }
+          button {
+            width: 100%;
+            padding: 16px 20px;
+            font-size: 0.9rem;
+            transition-duration: var(--transition-fast);
+            transition-property: background-color;
+            @include hover {
+              background-color: rgb(0, 0, 0, 0.1);
+            }
+          }
+        }
+      }
+    }
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const navToggle = document.querySelector<HTMLButtonElement>("[data-header-nav-toggle]");
+  if (navToggle) {
+    const targetId = navToggle.getAttribute("aria-controls");
+    if (targetId) {
+      const nav = document.getElementById(targetId);
+      const open = () => {
+        nav?.removeAttribute("hidden");
+        navToggle.setAttribute("aria-expanded", "true");
+      };
+      const close = () => {
+        nav?.setAttribute("hidden", "");
+        navToggle.setAttribute("aria-expanded", "false");
+      };
+      navToggle.addEventListener("click", () => {
+        const isOpen = navToggle.getAttribute("aria-expanded") === "true";
+        if (isOpen) {
+          // 閉じる
+          close();
+        } else {
+          // 開く
+          open();
+        }
+      });
+
+      const resizeObserver = new ResizeObserver((entries) => {
+        const { width, height } = entries[0].contentRect;
+        if (width && height) {
+          // SP
+          close();
+        } else {
+          // PC
+          open();
+        }
+      });
+      resizeObserver.observe(navToggle);
+    }
+  }
+
+  ScrollTrigger.create({
+    trigger: "body",
+    start: "top top",
+    toggleClass: { targets: ".Header", className: "is-scroll" },
+  });
+
+  document.querySelector("[data-header-style-off]")?.addEventListener("click", () => {
+    document.querySelectorAll<HTMLLinkElement>(`link[rel="stylesheet"]`).forEach((style) => {
+      style.media = "not all";
+    });
+  });
+</script>

@@ -1,0 +1,33 @@
+---
+import HeadingPrimary from "./HeadingPrimary.astro";
+import Section from "./Section.astro";
+---
+
+<Section label="Contact" class="Contact">
+  <div class="Contact__Inner">
+    <HeadingPrimary decoration="Contact">ご連絡</HeadingPrimary>
+    <p>ご連絡は各種SNSで</p>
+  </div>
+</Section>
+
+<style lang="scss">
+  :root {
+    --contact-cut-size: 440px;
+  }
+  .Contact {
+    margin-block-end: calc(-1 * var(--contact-cut-size));
+    clip-path: polygon(
+      0% 0%,
+      100% 0%,
+      100% calc(100% - var(--contact-cut-size)),
+      var(--section-label-width) 100%,
+      0% 100%
+    );
+    background-color: var(--color-background);
+  }
+  .Contact__Inner {
+    padding-block-start: 80px;
+    padding-block-end: calc(var(--contact-cut-size) - 80px);
+    padding-inline: 5%;
+  }
+</style>

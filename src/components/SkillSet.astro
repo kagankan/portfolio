@@ -1,0 +1,111 @@
+---
+import HeadingPrimary from "./HeadingPrimary.astro";
+import Section from "./Section.astro";
+import SkillCard from "./SkillCard.astro";
+const skillSet = [
+  {
+    name: "HTML",
+    value: 90,
+    term: "3 years",
+  },
+  {
+    name: "CSS / Sass",
+    value: 90,
+    term: "3 years",
+  },
+  {
+    name: "JavaScript",
+    value: 80,
+    term: "3 years",
+  },
+  {
+    name: "TypeScript",
+    value: 70,
+    term: "1.5 years",
+  },
+  {
+    name: "Astro",
+    value: 70,
+    term: "0.5 years",
+  },
+  {
+    name: "GSAP",
+    value: 80,
+    term: "1 years",
+  },
+  {
+    name: "アクセシビリティ",
+    value: 60,
+    term: "0.5 years",
+  },
+  {
+    name: "Three.js",
+    value: 60,
+    term: "1 years",
+  },
+  {
+    name: "React",
+    value: 60,
+    term: "1 years",
+  },
+  {
+    name: "Vue",
+    value: 60,
+    term: "1.5 years",
+  },
+] as const satisfies readonly Parameters<typeof SkillCard>[0][];
+---
+
+<Section label="Skill Set">
+  <div class="SkillSet__Inner">
+    <HeadingPrimary decoration="Skill Set">スキルセット</HeadingPrimary>
+    <p>
+      ここに補足分入れたいです。ほにゃほにゃにゃ。<br
+      />新しいツールを積極的に取り入れてます。とくにツールとの親密度を基準に得意なスキルを<br
+      />記載しました。てきなやつです。
+    </p>
+    <ul class="SkillSetList">
+      {
+        skillSet.map((item) => (
+          <li>
+            <SkillCard {...item} />
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</Section>
+
+<style lang="scss">
+  .SkillSet__Inner {
+    position: relative;
+    padding-block-start: 120px;
+    padding-block-end: 120px;
+    padding-inline: 5% 10%;
+    overflow: hidden;
+    &::before,
+    &::after {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      display: block;
+      min-width: 1500px;
+      content: "";
+    }
+    &::before {
+      clip-path: polygon(100% 0%, 0% 50%, 100% 90%);
+      background-image: linear-gradient(190deg, #0046b7, #a5e0e5, #ffffff);
+    }
+    &::after {
+      clip-path: polygon(0% 100%, 0% 50%, 100% 90%, 100% 100%);
+      background-image: linear-gradient(190deg, #ffffff 50%, #a5ffe3, #54d398);
+    }
+  }
+
+  .SkillSetList {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
+    gap: 1rem;
+    margin-block-start: 40px;
+  }
+</style>

@@ -1,0 +1,120 @@
+---
+import sampleImage from "@/assets/images/300x150.png";
+import HeadingPrimary from "./HeadingPrimary.astro";
+import Img from "./Img.astro";
+import Section from "./Section.astro";
+---
+
+<Section label="About Me" id="about" class="About">
+  <div class="About__Inner">
+    <HeadingPrimary decoration="About Me">自己紹介</HeadingPrimary>
+    <p class="About__Paragraph">
+      1997年東京都生まれ。中学生時代、Excelでゲームを作ろうとプログラミングを始めたことをきっかけに情報技術に興味を持ち、高校・大学で情報工学を学ぶ。<br
+      />
+      2020年から制作会社でフロントエンドエンジニアとしてHTML/CSS/JSと戯れています。
+    </p>
+    <ul class="About__List">
+      <li class="About__ListItem">
+        <h3>伝えることに<span class="tw-inline-block">興味があります</span></h3>
+        <Img src={sampleImage} alt="" />
+        <p>
+          情報をわかりやすく伝えること・表現することが好きです。また、それが役に立ったり、楽しんでもらえたりすることが喜びです。<br
+          />
+          Web制作の仕事を通じてクライアントの思いをサイトとして表現しているのはもちろんのこと、自分の知識を伝える個人的な活動として、Zennへの記事投稿を行ったり、小学校でプログラミング教室を開催したりしています。
+        </p>
+      </li>
+      <li class="About__ListItem">
+        <h3>表現とアクセシビリティの<span class="tw-inline-block">両立を目指しています</span></h3>
+        <Img src={sampleImage} alt="" />
+        <p>
+          ビジュアル表現やアニメーション演出は伝えたい印象を表現する上で重要です。しかし、それによってユーザビリティやアクセシビリティを損ねてはそもそも使えないサイトになってしまいます。
+          これらの両立を実現するために、技術を磨き続けています。
+        </p>
+      </li>
+      <li class="About__ListItem">
+        <h3>ピクセルパーフェクトは、<span class="tw-inline-block"><em>あえて</em>目指しません</span></h3>
+        <Img src={sampleImage} alt="" />
+        <p>
+          デザインデータを再現することはもちろん大前提。ですが、「どんな画面幅でもうまく表示されること」や「実装をシンプルに保つこと」なども考慮すると、最適な結果は他にある場合もあります。
+          盲目的にデザインをなぞるのではなく、最良を目指して検討・議論しながら実装します。
+        </p>
+      </li>
+    </ul>
+  </div>
+</Section>
+
+<style lang="scss">
+  .About__Inner {
+    padding-block-start: 120px;
+    padding-block-end: 120px;
+    padding-inline-start: 13%;
+    padding-inline-end: 13%;
+  }
+  .About__Paragraph {
+    font-size: 0.875rem;
+    line-height: 2.3;
+  }
+  .About__List {
+    margin-block-start: 100px;
+    counter-reset: about-count;
+    > li {
+      position: relative;
+      z-index: 0;
+      padding-block-start: 60px;
+      padding-inline-start: 80px;
+      counter-increment: about-count;
+      &:not(:first-child) {
+        margin-block-start: 80px;
+      }
+      &::before {
+        position: absolute;
+        z-index: -1;
+        font-family: var(--font-family-emphasis);
+        font-size: 8rem;
+        color: var(--color-green-light);
+        content: counter(about-count, decimal-leading-zero);
+        inset-block-start: 0;
+        inset-inline-start: 0;
+      }
+    }
+    h3 {
+      font-size: 2rem;
+      font-weight: bold;
+      line-height: 2;
+      color: var(--color-blue);
+    }
+    .About__ListItem {
+      display: grid;
+      row-gap: 20px;
+      column-gap: 20px;
+      &:nth-child(1) {
+        grid-template-areas:
+          "heading paragraph"
+          "image   paragraph";
+      }
+      &:nth-child(2) {
+        grid-template-areas:
+          "heading   image"
+          "paragraph paragraph";
+        margin-inline-start: 20%;
+      }
+      &:nth-child(3) {
+        grid-template-areas:
+          "heading  "
+          "image    "
+          "paragraph";
+        margin-inline-start: 10%;
+      }
+
+      h3 {
+        grid-area: heading;
+      }
+      img {
+        grid-area: image;
+      }
+      p {
+        grid-area: paragraph;
+      }
+    }
+  }
+</style>

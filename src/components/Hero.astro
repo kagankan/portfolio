@@ -1,0 +1,101 @@
+<div class="Hero">
+  <div class="Hero__Mesh"></div>
+  <div class="Hero__Inner">
+    <p class="Hero__Label">Frontend engineer</p>
+    <h1 class="Hero__Heading">
+      <span class="Hero__Heading__Name">KISHI YOSHIMARU</span>
+      <span class="Hero__Heading__Title">PORTFOLIO</span>
+    </h1>
+  </div>
+</div>
+
+<style lang="scss">
+  .Hero {
+    --hero-bg-y-1: 0%;
+    --hero-bg-y-2: 55%;
+    --hero-bg-y-3: 125%;
+    --hero-before-mask: 100%;
+    --hero-after-mask: 0%;
+    --hero-heading-font-size: clamp(2.5rem, (100vw - 1300px) * 0.12 + 9rem, 9rem);
+
+    position: relative;
+    display: grid;
+    align-items: center;
+    padding-block-end: 40px;
+    padding-inline: 10% 16%;
+    margin-inline-start: var(--section-label-width);
+    overflow: hidden;
+    font-family: var(--font-family-emphasis);
+    block-size: 80vh;
+    &::before,
+    &::after {
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      display: block;
+      min-width: 1500px;
+      backface-visibility: hidden;
+      content: "";
+    }
+    &::before {
+      clip-path: polygon(100% var(--hero-bg-y-1), 0% var(--hero-bg-y-2), 0% 100%, 100% 100%);
+      background-image: linear-gradient(190deg, var(--color-blue), var(--color-blue-light), var(--color-background));
+      mask-image: linear-gradient(to right, transparent 50%, #000 50%);
+      mask-size: 200%;
+      mask-position: var(--hero-before-mask);
+    }
+    &::after {
+      clip-path: polygon(0% var(--hero-bg-y-2), 100% var(--hero-bg-y-3), 100% 100%, 0% 100%);
+      background-image: linear-gradient(190deg, var(--color-background) 50%, var(--color-green-light));
+      mask-image: linear-gradient(to right, #000 50%, transparent 50%);
+      mask-size: 200%;
+      mask-position: var(--hero-after-mask);
+    }
+  }
+  .Hero__Mesh {
+    --line-color: var(--color-background);
+    --mesh-size: 120px;
+
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(to right, var(--line-color) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--line-color) 1px, transparent 1px);
+    background-position: calc(-1 * var(--mesh-size));
+    background-size: var(--mesh-size) var(--mesh-size);
+  }
+  .Hero__Inner {
+    position: relative;
+    font-size: var(--hero-heading-font-size);
+  }
+  .Hero__Label {
+    position: absolute;
+    font-size: 2.5rem;
+    color: var(--color-blue);
+    background-color: var(--color-green-light);
+    inset-block-start: calc(var(--hero-heading-font-size) * 0.5);
+    inset-inline-end: calc(var(--hero-heading-font-size) * -0.1);
+  }
+  .Hero__Heading {
+    display: grid;
+    grid-auto-columns: minmax(0, 1fr);
+    row-gap: 0.2em;
+    letter-spacing: 0.05em;
+  }
+  .Hero__Heading__Name {
+    color: var(--color-blue);
+  }
+  .Hero__Heading__Title {
+    justify-self: end;
+    color: var(--color-background);
+  }
+</style>
+
+<script>
+  import { gsap } from "gsap";
+
+  gsap
+    .timeline()
+    .set(".Hero", { "--hero-before-mask": `0%`, "--hero-after-mask": `100%` })
+    .fromTo(".Hero", { "--hero-before-mask": "0%" }, { "--hero-before-mask": "100%", duration: 0.5 }, "+=0.2")
+    .fromTo(".Hero", { "--hero-after-mask": "100%" }, { "--hero-after-mask": "0%", duration: 0.5 });
+</script>

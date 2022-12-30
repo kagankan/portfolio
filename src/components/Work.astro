@@ -1,0 +1,158 @@
+---
+import HeadingPrimary from "./HeadingPrimary.astro";
+import Section from "./Section.astro";
+---
+
+<Section label="Work">
+  <div class="Work__Inner">
+    <HeadingPrimary decoration="Work">活動</HeadingPrimary>
+    <p>
+      ここに補足分入れたいです。ほにゃほにゃにゃ。<br
+      />新しいツールを積極的に取り入れてます。とくにツールとの親密度を基準に得意なスキルを<br
+      />記載しました。てきなやつです。
+    </p>
+    <ul class="Work__List">
+      <li>
+        <h3>OSS活動</h3>
+        <p>
+          使用するライブラリ等にいくつかコントリビュートしています。最近ではMarkuplintのWebサイトメンテナとしてお手伝いしています。
+        </p>
+      </li>
+      <li>
+        <h3>技術記事執筆</h3>
+        <p>
+          Zennに技術記事を投稿しています。HTML・CSSの話題が主です。<br />
+          <a href="https://zenn.dev/kagan" target="_blank" rel="noopener noreferrer">https://zenn.dev/kagan</a>
+        </p>
+      </li>
+    </ul>
+    <div class="Work__ClientWork">
+      <p>実績の詳細はお問い合わせください</p>
+      <a href="">CLIENT WORK</a>
+    </div>
+    <div class="Work__DecorationBox"></div>
+  </div>
+</Section>
+
+<style lang="scss">
+  .Work__Inner {
+    position: relative;
+    z-index: 0;
+    padding-block: 120px;
+    padding-inline: 5%;
+  }
+  .Work__List {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 5%;
+    max-width: 1000px;
+    margin-block-start: 60px;
+    counter-reset: work-count;
+    > li {
+      position: relative;
+      z-index: 0;
+      padding-block-start: 80px;
+      padding-inline-start: 80px;
+      counter-increment: work-count;
+      &:not(:first-child) {
+        margin-block-start: 80px;
+      }
+
+      &::before {
+        position: absolute;
+        z-index: -1;
+        font-size: 8rem;
+        font-weight: var(--font-family-emphasis);
+        color: var(--color-green-light);
+        content: counter(work-count, decimal-leading-zero);
+        inset-block-start: 0;
+        inset-inline-start: 0;
+      }
+      :any-link {
+        color: var(--color-blue);
+        text-decoration: underline;
+        transition-duration: var(--transition-fast);
+        transition-property: opacity;
+        @include hover {
+          opacity: 0.7;
+        }
+      }
+    }
+    h3 {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  }
+
+  .Work__ClientWork {
+    margin-block-start: 120px;
+    text-align: center;
+    p {
+      margin-inline: auto;
+      font-weight: 700;
+      color: var(--color-blue);
+    }
+    :any-link {
+      display: grid;
+      align-items: center;
+      width: 100%;
+      max-width: 400px;
+      min-height: 2em;
+      margin-block-start: 20px;
+      margin-inline: auto;
+      font-size: 2rem;
+      color: var(--color-background);
+      background-color: var(--color-blue);
+      transition-duration: var(--transition-fast);
+      transition-property: opacity;
+      @include hover {
+        opacity: 0.7;
+      }
+    }
+  }
+
+  .Work__DecorationBox {
+    --block-size: min(30vw, 500px);
+    --rect-size: 40%;
+    position: absolute;
+    inset-block-start: -10%;
+    z-index: -1;
+    inset-inline-end: 10%;
+    clip-path: polygon(
+      0% 0%,
+      var(--rect-size) 0%,
+      100% calc(100% - var(--rect-size)),
+      100% 100%,
+      calc(100% - var(--rect-size)) 100%,
+      0% var(--rect-size)
+    );
+    pointer-events: none;
+    background-image: linear-gradient(
+      135deg,
+      var(--color-blue),
+      var(--color-blue-light),
+      var(--color-green-light),
+      var(--color-background)
+    );
+    block-size: var(--block-size);
+    inline-size: var(--block-size);
+    &::before,
+    &::after {
+      position: absolute;
+      display: block;
+      content: "";
+      block-size: var(--rect-size);
+      inline-size: var(--rect-size);
+    }
+    &::before {
+      inset-block-start: 0;
+      inset-inline-start: 0;
+      background-image: linear-gradient(135deg, var(--color-blue), var(--color-blue-light));
+    }
+    &::after {
+      inset-block-end: 0;
+      inset-inline-end: 0;
+      background-image: linear-gradient(135deg, var(--color-background), var(--color-green-light));
+    }
+  }
+</style>

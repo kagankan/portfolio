@@ -5,6 +5,7 @@ module.exports = {
     "stylelint-config-html", // astroファイルやsvelteファイル内のstyle記述を対象にする
     "stylelint-config-prettier",
   ],
+  plugins: ["stylelint-use-logical"],
   ignoreFiles: ["**/*.js", "**/*.ts"],
   rules: {
     "declaration-property-unit-disallowed-list": [
@@ -16,5 +17,6 @@ module.exports = {
     "selector-pseudo-element-colon-notation": "double",
     "selector-pseudo-class-no-unknown": [true, { ignorePseudoClasses: ["modal"] }],
     "scss/selector-no-union-class-name": true,
+    "csstools/use-logical": true,
   },
 };

@@ -1,0 +1,38 @@
+---
+import type { HTMLAttributes } from "astro/types";
+
+export type Props = HTMLAttributes<"section"> & {
+  label: string;
+};
+const { label, class: className, ...restProps } = Astro.props;
+---
+
+<section class:list={["Section", className]} {...restProps}>
+  <div class="Section__StickyLabel" aria-hidden="true" data-visual-only={label}></div>
+  <div>
+    <slot />
+  </div>
+</section>
+
+<style lang="scss">
+  .Section {
+    display: grid;
+    grid-template-columns: var(--section-label-width) 1fr;
+  }
+  .Section__StickyLabel {
+    position: sticky;
+    align-self: start;
+    justify-self: end;
+    padding-block-start: 100px;
+    padding-inline-end: 10px;
+    font-size: 1.4rem;
+    color: #0046b7;
+    border-inline-end: currentColor 1px solid;
+    inset-block-start: calc(var(--header-height) + 20px);
+    &::before {
+      display: block;
+      writing-mode: vertical-lr;
+      transform: rotate(180deg);
+    }
+  }
+</style>

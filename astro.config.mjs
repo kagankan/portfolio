@@ -20,11 +20,10 @@ export default defineConfig({
     css: {
       preprocessorOptions: {
         scss: {
-          // TODO: importもしつつ、astroに直接書いてもエラーにならないようにしたい（そもそもastro側の問題？）
-          // additionalData: `
-          //   @use "${path.resolve(__dirname, "src")}/styles/global/global.scss" as *;
-          //   @use "sass:map";
-          // `,
+          additionalData: `
+            @use "src/styles/global/global.scss" as *;
+            @use "sass:map";
+          `,
         },
       },
     },

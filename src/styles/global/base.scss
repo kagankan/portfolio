@@ -3,18 +3,43 @@
   --color-background: #fff;
   --color-background-overlay: rgba(255, 255, 255, 0.55);
   --color-blue: #0046b7;
-  --color-green: #62f7c5;
-  --color-green-mid: #a5ffe3;
-  --color-green-2: #54d398;
+  --color-blue-light: #a5bfe5;
+  --color-green: #2dcc80; // #62f7c5, #54d398, #60d29d をマージ
+  --color-green-light: #c0fce8; // #a5ffe3, #a5eacc, #c0fce8 をマージしたい
+
+  --shadow-low: 0 1.6px 3.6px 0 rgb(0 0 0 / 13%), 0 0.3px 0.9px 0 rgb(0 0 0 / 11%);
+  --shadow-medium: 0 3.2px 7.2px 0 rgb(0 0 0 / 13%), 0 0.6px 1.8px 0 rgb(0 0 0 / 11%);
+  --shadow-high: 0 6.4px 14.4px 0 rgb(0 0 0 / 13%), 0 1.2px 3.6px 0 rgb(0 0 0 / 11%);
+
+  --transition-fast: 0.2s;
+
+  --z-index-header: 10;
+
+  --font-family-base: "Noto Sans JP", sans-serif;
+  --font-family-emphasis: "Titillium Web", "Noto Sans JP", sans-serif;
+
+  // コンポーネント関連
+  --section-label-width: 7.5%;
 }
 
 html {
+  font-family: var(--font-family-base);
   line-height: 1;
+  word-break: break-word; // iOS Safari用のフォールバック
+  overflow-wrap: anywhere;
+  scroll-behavior: smooth; // TODO: アニメーションオフ時は打ち消す
 }
 
 img {
   max-width: 100%;
-  height: auto;
+  block-size: auto;
+}
+
+em {
+  &:lang(ja) {
+    font-style: inherit;
+    text-emphasis: filled;
+  }
 }
 
 summary {
@@ -27,4 +52,15 @@ summary {
 
 select {
   cursor: pointer;
+}
+
+[data-visual-only] {
+  &::before {
+    // HTML単体で表示した場合（CSSが適用されない場合）に表示しない要素のため、contentで表示
+    content: attr(data-visual-only);
+  }
+}
+
+:target {
+  scroll-margin-block-start: var(--header-height);
 }
