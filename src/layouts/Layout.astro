@@ -15,6 +15,7 @@ const { title } = Astro.props;
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="robots" content="noindex, nofollow" />
     <title>{title}</title>
     <!--
       NOTE: WebフォントはCSSファイルでimportせず、linkタグで読み込む。
@@ -24,7 +25,7 @@ const { title } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href={"https://fonts.googleapis.com/css2?family=Titillium+Web:wght@700&amp;family=Noto+Sans+JP&amp;display=swap"}
+      href={"https://fonts.googleapis.com/css2?family=Urbanist:wght@700&amp;family=Noto+Sans+JP&amp;display=swap"}
       rel="stylesheet"
     />
   </head>
@@ -33,10 +34,10 @@ const { title } = Astro.props;
     <slot />
     {
       /*
-    NOTE: Astroの仕様上は、styleタグはhtmlタグの外側（ルート）に配置して問題ないが、
-    フォーマッタのバグでbody内に入ってしまう
-    https://github.com/withastro/prettier-plugin-astro/issues/295
-    →近々治りそう
+      NOTE: Astroの仕様上は、styleタグはhtmlタグの外側（ルート）に配置して問題ないが、
+      フォーマッタのバグでbody内に入ってしまう
+      https://github.com/withastro/prettier-plugin-astro/issues/295
+      →近々治りそう
      */
     }
     <style is:global>
@@ -51,3 +52,5 @@ const { title } = Astro.props;
     </style>
   </body>
 </html>
+
+<script src="@/scripts/details.ts"></script>

@@ -1,25 +1,90 @@
-:root {
+@mixin theme-light {
   --color-content: #000918;
   --color-background: #fff;
   --color-background-overlay: rgba(255, 255, 255, 0.55);
   --color-blue: #0046b7;
   --color-blue-light: #a5bfe5;
-  --color-green: #2dcc80; // #62f7c5, #54d398, #60d29d をマージ
+  --color-green-dark: #2dcc80;
+  --color-green: #6cdeac; // #62f7c5, #54d398, #60d29d をマージ
   --color-green-light: #c0fce8; // #a5ffe3, #a5eacc, #c0fce8 をマージしたい
+  --color-green-lighter: #e6fff8;
+  --color-green-gray: #dcebe7;
+  --color-shadow-rgb: 0, 0, 0;
 
-  --shadow-low: 0 1.6px 3.6px 0 rgb(0 0 0 / 13%), 0 0.3px 0.9px 0 rgb(0 0 0 / 11%);
-  --shadow-medium: 0 3.2px 7.2px 0 rgb(0 0 0 / 13%), 0 0.6px 1.8px 0 rgb(0 0 0 / 11%);
-  --shadow-high: 0 6.4px 14.4px 0 rgb(0 0 0 / 13%), 0 1.2px 3.6px 0 rgb(0 0 0 / 11%);
+  color-scheme: light;
+}
+@mixin theme-dark {
+  color-scheme: dark;
+}
 
+@mixin motion-no-preference {
   --transition-fast: 0.2s;
+  scroll-behavior: smooth;
+}
+@mixin motion-reduce {
+  --transition-fast: 0s;
+  scroll-behavior: auto;
+}
+
+:root {
+  --shadow-low: 0 1.6px 3.6px 0 rgb(var(--color-shadow-rgb), 13%), 0 0.3px 0.9px 0 rgb(var(--color-shadow-rgb), 11%);
+  --shadow-medium: 0 3.2px 7.2px 0 rgb(var(--color-shadow-rgb), 13%), 0 0.6px 1.8px 0 rgb(var(--color-shadow-rgb), 11%);
+  --shadow-high: 0 6.4px 14.4px 0 rgb(var(--color-shadow-rgb), 13%), 0 1.2px 3.6px 0 rgb(var(--color-shadow-rgb), 11%);
 
   --z-index-header: 10;
+  --z-index-loading-screen: 100;
 
   --font-family-base: "Noto Sans JP", sans-serif;
-  --font-family-emphasis: "Titillium Web", "Noto Sans JP", sans-serif;
+  --font-family-emphasis: "Urbanist", "Noto Sans JP", sans-serif;
+
+  --icon-open-in-new: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 48 48"><path d="M9 42q-1.2 0-2.1-.9Q6 40.2 6 39V9q0-1.2.9-2.1Q7.8 6 9 6h12.45q.65 0 1.075.425.425.425.425 1.075 0 .65-.425 1.075Q22.1 9 21.45 9H9v30h30V26.55q0-.65.425-1.075.425-.425 1.075-.425.65 0 1.075.425Q42 25.9 42 26.55V39q0 1.2-.9 2.1-.9.9-2.1.9Zm9.05-12.05q-.4-.45-.425-1.05-.025-.6.425-1.05L36.9 9h-9.45q-.65 0-1.075-.425-.425-.425-.425-1.075 0-.65.425-1.075Q26.8 6 27.45 6H40.5q.65 0 1.075.425Q42 6.85 42 7.5v13.05q0 .65-.425 1.075-.425.425-1.075.425-.65 0-1.075-.425Q39 21.2 39 20.55v-9.4L20.15 30q-.4.4-1.025.4-.625 0-1.075-.45Z"/></svg>');
 
   // コンポーネント関連
-  --section-label-width: 7.5%;
+  --section-label-width: max(7.5%, 2em);
+
+  // カラーテーマ
+  &[data-theme="light"] {
+    @include theme-light;
+  }
+  &[data-theme="dark"] {
+    @include theme-dark;
+  }
+  &:not([data-theme]) {
+    @media (prefers-color-scheme: light) {
+      @include theme-light;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      @include theme-dark;
+    }
+  }
+
+  // アニメーション
+  &[data-motion="no-preference"] {
+    @include motion-no-preference;
+  }
+  &[data-motion="reduce"] {
+    @include motion-reduce;
+  }
+  &:not([data-motion]) {
+    @media (prefers-reduced-motion: no-preference) {
+      @include motion-no-preference;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      @include motion-reduce;
+    }
+  }
+
+  // 縦書き
+  &[data-writing-mode="vertical-rl"] {
+    writing-mode: vertical-rl;
+  }
+
+  // アニメーションオフ
+  &[data-animation="false"] {
+    --transition-fast: 0.001ms;
+    scroll-behavior: auto;
+  }
 }
 
 html {
@@ -27,7 +92,6 @@ html {
   line-height: 1;
   word-break: break-word; // iOS Safari用のフォールバック
   overflow-wrap: anywhere;
-  scroll-behavior: smooth; // TODO: アニメーションオフ時は打ち消す
 }
 
 img {

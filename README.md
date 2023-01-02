@@ -83,6 +83,9 @@ interfaceには予期しない上書きの可能性があるなどの危険が�
 ## フォント検討
 
 Google FontsにFuturaがないので代替を検討
+https://fonts.google.com/specimen/Urbanist
+
+### 候補
 
 https://fonts.google.com/specimen/Jost
 https://fonts.google.com/specimen/Roboto
@@ -100,4 +103,4 @@ https://fonts.google.com/specimen/Inter
 見出しとテキストの色を変更
 （一貫したルールを持たせるため）
 
-
+セクション内で背景色の明暗が変わるとコントラスト担保が難しいため調整したい

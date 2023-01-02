@@ -12,21 +12,25 @@ const { decoration } = Astro.props;
 
 <style lang="scss">
   .HeadingPrimary {
-    --decoration-font-size: clamp(8rem, (100vw - 1300px) * 0.3 + 16rem, 16rem);
+    --decoration-font-size: clamp(5rem, (100vw - 1500px) * 0.2 + 16rem, 16rem);
 
     position: relative;
     z-index: 0;
-    padding: calc(var(--decoration-font-size) * 0.6) 1em 0.5em calc(var(--decoration-font-size) * 0.2);
-    font-size: 4.5rem;
+    padding: calc(var(--decoration-font-size) * 0.6) 0 0.5em calc(var(--decoration-font-size) * 0.2);
     font-weight: bold;
     color: #0046b7;
+    @include pc {
+      font-size: 4.5rem;
+    }
+    @include sp {
+      font-size: 3rem;
+    }
 
     [data-visual-only] {
       position: absolute;
       z-index: -1;
       width: max-content;
       font-family: var(--font-family-emphasis);
-      /* stylelint-disable-next-line declaration-property-unit-disallowed-list */
       font-size: var(--decoration-font-size);
       color: var(--color-green-light);
       pointer-events: none;

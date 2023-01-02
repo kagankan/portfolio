@@ -22,11 +22,16 @@
     display: grid;
     align-items: center;
     padding-block-end: 40px;
-    padding-inline: 10% 16%;
     margin-inline-start: var(--section-label-width);
     overflow: hidden;
     font-family: var(--font-family-emphasis);
     block-size: 80vh;
+    @include pc {
+      padding-inline: 8% 12%;
+    }
+    @include sp {
+      padding-inline: 4% 6%;
+    }
     &::before,
     &::after {
       position: absolute;
@@ -53,7 +58,7 @@
     }
   }
   .Hero__Mesh {
-    --line-color: var(--color-background);
+    --line-color: #f3f3f3;
     --mesh-size: 120px;
 
     position: absolute;
@@ -65,15 +70,18 @@
   }
   .Hero__Inner {
     position: relative;
+    max-width: 1000px;
+    margin-inline: auto;
     font-size: var(--hero-heading-font-size);
   }
   .Hero__Label {
     position: absolute;
-    font-size: 2.5rem;
+    font-size: clamp(1.25rem, 0.4em, 2.5rem);
+    line-height: 1;
     color: var(--color-blue);
     background-color: var(--color-green-light);
-    inset-block-start: calc(var(--hero-heading-font-size) * 0.5);
-    inset-inline-end: calc(var(--hero-heading-font-size) * -0.1);
+    inset-block-start: calc(var(--hero-heading-font-size) * 0.8 - 2em);
+    inset-inline-end: calc(var(--hero-heading-font-size) * -0.2);
   }
   .Hero__Heading {
     display: grid;

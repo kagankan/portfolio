@@ -1,19 +1,23 @@
 ---
 import { randomUUID } from "node:crypto";
+import type { ComponentProps } from "@/utils";
 import Img from "./Img.astro";
 export type Props = {
   name: string;
   /** 0~100 */
   value: number;
   term: string;
+  icon: ComponentProps<typeof Img>["src"];
+  /** アイコン画像の取得元 */
+  iconSource?: `http${string}`;
 };
-const { name, value, term } = Astro.props;
+const { name, value, term, icon } = Astro.props;
 const id = randomUUID();
 ---
 
 <div class="SkillCard" style={{ "--value": value }}>
-  <div>
-    <Img src="https://placehold.jp/150x150.png" alt="" />
+  <div class="SkillCard__Image">
+    <Img src={icon} alt="" />
   </div>
   <div>
     <div class="SkillCard__Head">
@@ -45,6 +49,12 @@ const id = randomUUID();
       flex-basis: 0;
       flex-grow: 9999;
       min-width: 70%;
+    }
+  }
+  .SkillCard__Image {
+    img {
+      width: 100%;
+      aspect-ratio: 1;
     }
   }
   .SkillCard__Head {
@@ -81,6 +91,7 @@ const id = randomUUID();
     // Firefoxではmeter自体が背景、Chromeでは-webkit-meter-barが背景
     @mixin bar {
       height: var(--meter-height);
+      padding: 2px;
       background: #fff;
       border: none;
       border-radius: 9999px;

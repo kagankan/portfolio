@@ -9,7 +9,8 @@ import Section from "./Section.astro";
   <div class="About__Inner">
     <HeadingPrimary decoration="About Me">自己紹介</HeadingPrimary>
     <p class="About__Paragraph">
-      1997年東京都生まれ。中学生時代、Excelでゲームを作ろうとプログラミングを始めたことをきっかけに情報技術に興味を持ち、高校・大学で情報工学を学ぶ。<br
+      岸嘉丸（きしよしまる）。<br
+      />1997年東京都生まれ。中学生時代、Excelでゲームを作ろうとプログラミングを始めたことをきっかけに情報技術に興味を持ち、高校・大学で情報工学を学ぶ。<br
       />
       2020年から制作会社でフロントエンドエンジニアとしてHTML/CSS/JSと戯れています。
     </p>
@@ -44,14 +45,43 @@ import Section from "./Section.astro";
 </Section>
 
 <style lang="scss">
+  // .About {
+  // }
   .About__Inner {
+    --left-height: 70%;
+    --left-width: 10%;
+    --after-block-size: 300px;
+
+    position: relative;
     padding-block-start: 120px;
-    padding-block-end: 120px;
-    padding-inline-start: 13%;
-    padding-inline-end: 13%;
+    padding-block-end: var(--after-block-size);
+    padding-inline: 13%;
+    background-image: linear-gradient(var(--color-green), var(--color-green-light), var(--color-green-gray));
+    @include sp {
+      --left-width: 0%;
+      padding-inline: 5% 10%;
+    }
+    &::before {
+      position: absolute;
+      inset-block: 0;
+      inset-inline-start: 0;
+      inline-size: var(--left-width);
+      display: block;
+      content: "";
+      background-image: linear-gradient(var(--color-green-light), var(--color-green-lighter));
+    }
+    &::after {
+      position: absolute;
+      inset-inline: 0;
+      inset-block-end: 0;
+      display: block;
+      block-size: var(--after-block-size);
+      clip-path: polygon(0% var(--left-height), var(--left-width) var(--left-height), 100% 0%, 100% 100%, 0% 100%);
+      content: "";
+      background-color: var(--color-green);
+    }
   }
   .About__Paragraph {
-    font-size: 0.875rem;
     line-height: 2.3;
   }
   .About__List {
@@ -61,17 +91,22 @@ import Section from "./Section.astro";
       position: relative;
       z-index: 0;
       padding-block-start: 60px;
-      padding-inline-start: 80px;
+      padding-inline-start: min(16%, 80px);
       counter-increment: about-count;
       &:not(:first-child) {
-        margin-block-start: 80px;
+        @include pc {
+          margin-block-start: 80px;
+        }
+        @include sp {
+          margin-block-start: 40px;
+        }
       }
       &::before {
         position: absolute;
         z-index: -1;
         font-family: var(--font-family-emphasis);
         font-size: 8rem;
-        color: var(--color-green-light);
+        color: var(--color-background-overlay);
         content: counter(about-count, decimal-leading-zero);
         inset-block-start: 0;
         inset-inline-start: 0;
@@ -84,26 +119,34 @@ import Section from "./Section.astro";
       color: var(--color-blue);
     }
     .About__ListItem {
-      display: grid;
+      @include pc {
+        display: grid;
+      }
       row-gap: 20px;
       column-gap: 20px;
       &:nth-child(1) {
-        grid-template-areas:
-          "heading paragraph"
-          "image   paragraph";
+        @include pc {
+          grid-template-areas:
+            "heading paragraph"
+            "image   paragraph";
+        }
       }
       &:nth-child(2) {
-        grid-template-areas:
-          "heading   image"
-          "paragraph paragraph";
-        margin-inline-start: 20%;
+        @include pc {
+          grid-template-areas:
+            "heading   image"
+            "paragraph paragraph";
+          margin-inline-start: 20%;
+        }
       }
       &:nth-child(3) {
-        grid-template-areas:
-          "heading  "
-          "image    "
-          "paragraph";
-        margin-inline-start: 10%;
+        @include pc {
+          grid-template-areas:
+            "heading  "
+            "image    "
+            "paragraph";
+          margin-inline-start: 10%;
+        }
       }
 
       h3 {

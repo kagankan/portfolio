@@ -2,29 +2,30 @@
 
 <style lang="scss">
   .LoadingScreen {
-    --lattice-current: 0px;
+    --mesh-current: 0px;
     --line-current: 0%;
     --line-vertical: var(--line-current);
     --line-horizontal: var(--line-current);
     --line-color: #fff;
 
-    position: absolute;
+    position: fixed;
     inset: 0;
-    background-image: linear-gradient(-30deg, rgb(118, 118, 224), rgb(98, 207, 98));
+    z-index: var(--z-index-loading-screen);
+    background-image: linear-gradient(120deg, var(--color-green) 20%, var(--color-blue-light) 80%);
     mask-composite: intersect;
     mask-image: linear-gradient(
         to bottom,
-        transparent var(--lattice-current),
-        #000 var(--lattice-current) calc(var(--lattice-size) - var(--lattice-current)),
-        transparent calc(var(--lattice-size) - var(--lattice-current))
+        transparent var(--mesh-current),
+        #000 var(--mesh-current) calc(var(--mesh-size) - var(--mesh-current)),
+        transparent calc(var(--mesh-size) - var(--mesh-current))
       ),
       linear-gradient(
         to right,
-        transparent var(--lattice-current),
-        #000 var(--lattice-current) calc(var(--lattice-size) - var(--lattice-current)),
-        transparent calc(var(--lattice-size) - var(--lattice-current))
+        transparent var(--mesh-current),
+        #000 var(--mesh-current) calc(var(--mesh-size) - var(--mesh-current)),
+        transparent calc(var(--mesh-size) - var(--mesh-current))
       );
-    mask-size: var(--lattice-size) var(--lattice-size);
+    mask-size: var(--mesh-size) var(--mesh-size);
 
     // 縦線
     &::before {
@@ -33,7 +34,7 @@
       content: "";
       background-image: linear-gradient(to right, var(--line-color) 1px, transparent 1px);
       background-repeat: repeat no-repeat;
-      background-size: var(--lattice-size) var(--line-vertical);
+      background-size: var(--mesh-size) var(--line-vertical);
     }
     // 横線
     &::after {
@@ -42,7 +43,7 @@
       content: "";
       background-image: linear-gradient(var(--line-color) 1px, transparent 1px);
       background-repeat: no-repeat repeat;
-      background-size: var(--line-horizontal) var(--lattice-size);
+      background-size: var(--line-horizontal) var(--mesh-size);
     }
   }
 </style>
@@ -52,12 +53,12 @@
   const latticeSize = 120;
   gsap
     .timeline()
-    .set(".LoadingScreen", { "--lattice-size": `${latticeSize}px` })
+    .set(".LoadingScreen", { "--mesh-size": `${latticeSize}px` })
     .fromTo(".LoadingScreen", { "--line-current": "0%" }, { "--line-current": "100%", ease: Power1.easeInOut }, "+=0.2")
     .fromTo(
       ".LoadingScreen",
-      { "--lattice-current": "0px" },
-      { "--lattice-current": `${latticeSize / 2}px`, duration: 0.8, ease: Expo.easeIn },
+      { "--mesh-current": "0px" },
+      { "--mesh-current": `${latticeSize / 2}px`, duration: 0.8, ease: Expo.easeIn },
       "-=0.2"
     )
     .fromTo(".LoadingScreen", { autoAlpha: 1 }, { autoAlpha: 0, duration: 0.6 }, "<+=0.4");

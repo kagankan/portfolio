@@ -1,68 +1,101 @@
 ---
+import iconAccessibility from "@/assets/images/icon-accessibility.svg";
+import iconCss from "@/assets/images/icon-css.svg";
+import iconHtml from "@/assets/images/icon-html.svg";
+import logoAstro from "@/assets/images/logo-astro.svg";
+import logoGsap from "@/assets/images/logo-gsap.svg";
+import logoJs from "@/assets/images/logo-js.svg";
+import logoReact from "@/assets/images/logo-react.svg";
+import logoThree from "@/assets/images/logo-three.svg";
+import logoTs from "@/assets/images/logo-ts.svg";
+import logoVue from "@/assets/images/logo-vue.svg";
+import type { ComponentProps } from "@/utils/index";
 import HeadingPrimary from "./HeadingPrimary.astro";
 import Section from "./Section.astro";
 import SkillCard from "./SkillCard.astro";
+
 const skillSet = [
   {
     name: "HTML",
     value: 90,
     term: "3 years",
+    icon: iconHtml,
+    iconSource: "https://github.com/vscode-icons/vscode-icons/blob/master/icons/file_type_html.svg",
   },
   {
     name: "CSS / Sass",
     value: 90,
     term: "3 years",
+    icon: iconCss,
+    iconSource: "https://github.com/vscode-icons/vscode-icons/blob/master/icons/file_type_css.svg",
   },
   {
     name: "JavaScript",
     value: 80,
     term: "3 years",
+    icon: logoJs,
+    iconSource: "https://github.com/voodootikigod/logo.js/blob/master/js.svg",
   },
   {
     name: "TypeScript",
     value: 70,
     term: "1.5 years",
+    icon: logoTs,
+    iconSource: "https://www.typescriptlang.org/branding/",
   },
   {
     name: "Astro",
     value: 70,
     term: "0.5 years",
+    icon: logoAstro,
+    iconSource: "https://astro.build/press/",
   },
   {
     name: "GSAP",
     value: 80,
     term: "1 years",
+    icon: logoGsap,
+    iconSource: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/16327/logo-man.svg",
   },
   {
     name: "アクセシビリティ",
-    value: 60,
+    value: 70,
     term: "0.5 years",
+    icon: iconAccessibility,
+    iconSource: "https://fonts.google.com/icons?selected=Material%20Symbols%20Rounded%3Aaccessibility%3AFILL",
   },
   {
     name: "Three.js",
     value: 60,
     term: "1 years",
+    icon: logoThree,
+    iconSource: "https://github.com/mrdoob/three.js/blob/dev/files/icon.svg",
   },
   {
     name: "React",
     value: 60,
     term: "1 years",
+    icon: logoReact,
+    iconSource: "https://github.com/reactjs/reactjs.org/blob/main/src/icons/logo.svg",
   },
   {
     name: "Vue",
     value: 60,
     term: "1.5 years",
+    icon: logoVue,
+    iconSource: "https://github.com/vuejs/art/blob/master/logo.svg",
   },
-] as const satisfies readonly Parameters<typeof SkillCard>[0][];
+] as const satisfies readonly ComponentProps<typeof SkillCard>[];
 ---
 
 <Section label="Skill Set">
   <div class="SkillSet__Inner">
     <HeadingPrimary decoration="Skill Set">スキルセット</HeadingPrimary>
     <p>
-      ここに補足分入れたいです。ほにゃほにゃにゃ。<br
-      />新しいツールを積極的に取り入れてます。とくにツールとの親密度を基準に得意なスキルを<br
-      />記載しました。てきなやつです。
+      得意としている主な技術分野・ライブラリの紹介です。<br
+      />技術やライブラリを擬人化して接しがちなこともあり、「どれだけ親しみを持っているか」や「どれだけ積極的に情報を仕入れているか」を「親密度」という基準で評価しています。<br
+      />
+      また、期間は実務で扱ったことのある年数です。
     </p>
     <ul class="SkillSetList">
       {

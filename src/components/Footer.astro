@@ -1,15 +1,52 @@
 <footer class="Footer">
-  <p>Thank you!</p>
+  <p data-footer-text-container><span class="tw-sr-only" data-footer-text-source>Thank you!</span></p>
 </footer>
 
 <style lang="scss">
   .Footer {
-    block-size: calc(var(--contact-cut-size) + 80px);
-    padding-block-start: 160px;
+    padding-block-start: calc(var(--contact-cut-size) * 0.5);
     padding-inline: 5%;
-    font-size: 2.5rem;
     color: var(--color-background);
     text-align: end;
-    background-color: var(--color-green);
+    background-color: var(--color-green-dark);
+    block-size: calc(var(--contact-cut-size) + 80px);
+    @include pc {
+      font-size: 2.5rem;
+    }
+    @include sp {
+      font-size: 1.6rem;
+    }
+    p {
+      line-height: 1;
+    }
   }
 </style>
+
+<script>
+  import { gsap } from "gsap";
+  import { ScrollTrigger } from "gsap/ScrollTrigger";
+  gsap.registerPlugin(ScrollTrigger);
+
+  const timeline = gsap.timeline({
+    paused: true,
+    scrollTrigger: {
+      trigger: ".Footer",
+      start: "50% bottom",
+    },
+  });
+  const SPEED = 0.05;
+
+  const source = document.querySelector("[data-footer-text-source]");
+  const container = document.querySelector("[data-footer-text-container]");
+  if (source && container) {
+    const text = source.textContent;
+    text?.split("").forEach((char, index) => {
+      const span = document.createElement("span");
+      span.ariaHidden = "true";
+      span.textContent = char;
+      container.appendChild(span);
+      gsap.set(span, { opacity: 0, yPercent: 100, ...(char === " " ? {} : { display: "inline-block" }) });
+      timeline.to(span, { opacity: 1, yPercent: 0, duration: 0.2 }, SPEED * index);
+    });
+  }
+</script>
