@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "start": "astro dev",
-    "build": "astro build && markuplint 'dist/**/*.html'",
+    "build": "astro build",
     "preview": "astro preview",
-    "lint": "eslint 'src/**/*.{js,ts,astro}'; stylelint 'src/**/*.{css,scss,astro}'; cspell 'src/**/*.{js,ts,css,scss,astro}' --no-progress",
+    "lint:src": "eslint 'src/**/*.{js,ts,astro}'; stylelint 'src/**/*.{css,scss,astro}'; cspell 'src/**/*.{js,ts,css,scss,astro}' --no-progress",
+    "lint:dist": "markuplint 'dist/**/*.html'",
     "new:component": "scaffdog generate component"
   },
   "dependencies": {
