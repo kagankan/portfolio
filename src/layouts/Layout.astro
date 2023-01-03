@@ -25,7 +25,8 @@ const { title } = Astro.props;
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href={"https://fonts.googleapis.com/css2?family=Urbanist:wght@700&amp;family=Noto+Sans+JP&amp;display=swap"}
+      {/* & をエスケープさせるため波括弧内に記述 */}
+      href={"https://fonts.googleapis.com/css2?family=Urbanist:wght@700&family=Noto+Sans+JP&display=swap"}
       rel="stylesheet"
     />
   </head>
