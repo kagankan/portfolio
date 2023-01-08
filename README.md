@@ -61,15 +61,18 @@ Astroのシンタックスハイライトや、フォーマット。
 
 ## TypeScript
 
-`satisfies` を使用したいため4.9を使用。
-ただし、Prettierが未対応。
-https://github.com/prettier/prettier/issues/13516
-VSCode上で解析されることには問題ないが、Astroで使用されるバージョンが指定できず、結局エラーになった
-TODO: Astroで使用するTSバージョンを指定する方法知りたい
-
 `type` vs `interface` については、 `type` のみを使用する。
 interfaceには予期しない上書きの可能性があるなどの危険があるため。
 （アプリケーション開発においてはinterfaceが有効な場合もあるかもしれないが、Webサイト開発レベルだとあまり優位性を感じない）
+
+## アニメーションの無効化
+
+[prefers-reduced-motion](https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-reduced-motion)で切り替えは可能だが、OSの設定であるため、必ずしもユーザーがWebサイトに適用されるものと思って設定しているとも限らない。
+また、場合によって切り替えたいこともあると思う。
+そのため、「アニメーションの有効無効の切り替え」機能を提供する。
+
+メディアクエリもしくはサイト上での選択によって無効化する際は `--reduced-motion: reduce;` というカスタムプロパティを設定する。JSではこれを読み取ることによって動作を切り替える。
+この命名は、[prefers-color-scheme](https://developer.mozilla.org/ja/docs/Web/CSS/@media/prefers-color-scheme)メディア特性 と [color-scheme](https://developer.mozilla.org/ja/docs/Web/CSS/color-scheme)プロパティの対応を模したものです。
 
 ## コメントの基準
 

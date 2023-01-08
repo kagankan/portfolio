@@ -22,6 +22,7 @@
   scroll-behavior: smooth;
 }
 @mixin motion-reduce {
+  --reduced-motion: reduce; // JSから読み取って使用する
   --transition-fast: 0s;
   scroll-behavior: auto;
 }
