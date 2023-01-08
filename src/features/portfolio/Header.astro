@@ -301,6 +301,8 @@ const navId = "header-nav";
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { reducedMotionStorage } from "@/utils";
+
   gsap.registerPlugin(ScrollTrigger);
 
   // メニュー開閉
@@ -375,14 +377,17 @@ const navId = "header-nav";
 
   const commands = {
     "motion-disable": () => {
+      reducedMotionStorage.set("reduced-motion", "reduce");
       document.documentElement.setAttribute("data-motion", "reduce");
       disableGsap();
     },
     "motion-enable": () => {
+      reducedMotionStorage.set("reduced-motion", "no-preference");
       document.documentElement.setAttribute("data-motion", "no-preference");
       enableGsap();
     },
     "motion-default": () => {
+      reducedMotionStorage.remove("reduced-motion");
       document.documentElement.removeAttribute("data-motion");
       enableGsap();
     },
@@ -421,4 +426,11 @@ const navId = "header-nav";
         });
     });
   });
+
+  const selectedReducedMotion = reducedMotionStorage.get("reduced-motion");
+  if (selectedReducedMotion === "reduce") {
+    document.querySelector<HTMLElement>(`[data-header-theme="motion-disable"]`)?.click();
+  } else if (selectedReducedMotion === "no-preference") {
+    document.querySelector<HTMLElement>(`[data-header-theme="motion-enable"]`)?.click();
+  }
 </script>
