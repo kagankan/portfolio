@@ -17,12 +17,14 @@
 
 ## ディレクトリ構成
 
-```
+```sh
 /
 ├── public/
 ├── src/
-│   ├── components/
-│   ├── layouts/
+│   ├── assets/
+│   ├── base/       # Astroのデフォルトテンプレートでいうlayoutsの役割。layoutsではなくbaseとするのは、スタイルの適用順がcomponentsよりも先にする意図を表すように、アルファベット順で先に並ぶようにするため。
+│   ├── components/ # 汎用的なコンポーネント
+│   ├── features/   # 特定の機能・役割に紐づくコンポーネント
 │   └── pages/
 └── package.json
 ```
@@ -83,18 +85,11 @@ interfaceには予期しない上書きの可能性があるなどの危険が�
 ## フォント検討
 
 Google FontsにFuturaがないので代替を検討
-https://fonts.google.com/specimen/Urbanist
+https://fonts.google.com/specimen/Hind
 
 ### 候補
 
-https://fonts.google.com/specimen/Jost
-https://fonts.google.com/specimen/Roboto
-https://fonts.google.com/specimen/Heebo
-https://fonts.google.com/specimen/Kanit
-https://fonts.google.com/specimen/Work+Sans
-https://fonts.google.com/specimen/Titillium+Web
-https://fonts.google.com/specimen/Montserrat
-https://fonts.google.com/specimen/Inter
+https://fonts.google.com/specimen/Urbanist
 
 ## 変更箇所
 
