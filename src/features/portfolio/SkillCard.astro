@@ -52,6 +52,8 @@ const id = randomUUID();
     }
   }
   .SkillCard__Image {
+    padding: 2%;
+    background-color: #fff;
     img {
       width: 100%;
       aspect-ratio: 1;
@@ -66,11 +68,11 @@ const id = randomUUID();
   .SkillCard__Heading {
     font-size: 1.125rem;
     font-weight: 700;
-    color: var(--color-blue);
+    color: var(--color-secondary);
   }
   .SkillCard__Term {
     font-size: 0.875rem;
-    color: var(--color-blue);
+    color: var(--color-secondary);
   }
   .SkillCard__Value {
     display: grid;
@@ -104,7 +106,7 @@ const id = randomUUID();
     }
     // 棒
     @mixin value {
-      background-image: linear-gradient(to right, var(--color-blue) 10%, #00b7ae, var(--color-green) 90%);
+      background-image: linear-gradient(to right, var(--color-secondary) 10%, #00b7ae, var(--color-primary) 90%);
       background-size: calc((100 / var(--value)) * 100%);
       border-radius: inherit;
     }

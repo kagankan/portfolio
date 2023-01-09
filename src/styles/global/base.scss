@@ -1,20 +1,34 @@
+// CSS Variable Autocompleteの拡張機能で、後に記述された値が表示されるため、lightを後に記述する
+@mixin theme-dark {
+  --color-foreground: #fbfdff;
+  --color-background: #1452b7;
+  --color-background-overlay: rgba(0, 0, 0, 0.55);
+  // TODO: light, darkは実態と合っていないので命名を検討
+  --color-primary-dark: #a5bfe5;
+  --color-primary: #5286d4;
+  --color-primary-light: #0344ad;
+  --color-primary-lighter: #002b70;
+  --color-primary-gray: #69798d;
+  --color-secondary: #82ffd5;
+  --color-secondary-light: #2dcc80;
+  --color-shadow-rgb: 0, 0, 0;
+
+  color-scheme: dark;
+}
 @mixin theme-light {
-  --color-content: #000918;
+  --color-foreground: #000918;
   --color-background: #fff;
   --color-background-overlay: rgba(255, 255, 255, 0.55);
-  --color-blue: #0046b7;
-  --color-blue-light: #a5bfe5;
-  --color-green-dark: #2dcc80;
-  --color-green: #6cdeac; // #62f7c5, #54d398, #60d29d をマージ
-  --color-green-light: #c0fce8; // #a5ffe3, #a5eacc, #c0fce8 をマージしたい
-  --color-green-lighter: #e6fff8;
-  --color-green-gray: #dcebe7;
+  --color-primary-dark: #2dcc80;
+  --color-primary: #6cdeac; // #62f7c5, #54d398, #60d29d をマージ
+  --color-primary-light: #c0fce8; // #a5ffe3, #a5eacc, #c0fce8 をマージしたい
+  --color-primary-lighter: #e6fff8;
+  --color-primary-gray: #dcebe7;
+  --color-secondary: #0046b7;
+  --color-secondary-light: #a5bfe5;
   --color-shadow-rgb: 0, 0, 0;
 
   color-scheme: light;
-}
-@mixin theme-dark {
-  color-scheme: dark;
 }
 
 @mixin motion-no-preference {
@@ -91,8 +105,10 @@
 html {
   font-family: var(--font-family-base);
   line-height: 1;
+  color: var(--color-foreground);
   word-break: break-word; // iOS Safari用のフォールバック
   overflow-wrap: anywhere;
+  background-color: var(--color-background);
 }
 
 img {

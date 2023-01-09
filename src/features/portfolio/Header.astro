@@ -98,7 +98,7 @@ const navId = "header-nav";
       transition-duration: var(--transition-fast);
       transition-property: background-color;
       @include hover {
-        background-color: var(--color-blue-light);
+        background-color: var(--color-secondary-light);
       }
       &::after {
         font-family: var(--font-family-emphasis);
@@ -158,17 +158,17 @@ const navId = "header-nav";
       transition-duration: var(--transition-fast);
       transition-property: color, background-color;
       &[aria-current] {
-        color: var(--color-blue);
+        color: var(--color-secondary);
         @include pc {
-          border-block-start: 1px solid var(--color-blue);
+          border-block-start: 1px solid var(--color-secondary);
         }
         @include sp {
-          border-inline-start: 1px solid var(--color-blue);
+          border-inline-start: 1px solid var(--color-secondary);
         }
       }
       @include hover {
         color: var(--color-background);
-        background-color: var(--color-blue);
+        background-color: var(--color-secondary);
       }
     }
   }
@@ -186,7 +186,7 @@ const navId = "header-nav";
     details {
       position: relative;
       @include sp {
-        border: 1px solid var(--color-green-gray);
+        border: 1px solid var(--color-primary-gray);
         border-radius: 8px;
       }
       summary {
@@ -201,7 +201,7 @@ const navId = "header-nav";
         transition-property: color, background-color;
         @include pc {
           padding: 8px 16px;
-          border: 1px solid var(--color-green-gray);
+          border: 1px solid var(--color-primary-gray);
           border-radius: 9999px;
         }
         @include sp {
@@ -210,7 +210,7 @@ const navId = "header-nav";
         }
         @include hover {
           color: var(--color-background);
-          background-color: var(--color-blue);
+          background-color: var(--color-secondary);
         }
         &::after {
           display: inline-block;
@@ -252,7 +252,7 @@ const navId = "header-nav";
           height: 1px;
           margin-inline: auto;
           content: "";
-          background-color: var(--color-green-gray);
+          background-color: var(--color-primary-gray);
         }
       }
     }
@@ -274,7 +274,7 @@ const navId = "header-nav";
             height: 1px;
             margin-inline: auto;
             content: "";
-            background-color: var(--color-green-gray);
+            background-color: var(--color-primary-gray);
             inset-block-start: 0;
           }
         }
@@ -291,7 +291,7 @@ const navId = "header-nav";
           background-color: rgb(0, 0, 0, 0.1);
         }
         &[aria-checked="true"] {
-          border-color: var(--color-green-gray);
+          border-color: var(--color-primary-gray);
         }
       }
     }
@@ -301,7 +301,7 @@ const navId = "header-nav";
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
-  import { reducedMotionStorage } from "@/utils";
+  import { themeStorage } from "@/utils";
 
   gsap.registerPlugin(ScrollTrigger);
 
@@ -377,27 +377,30 @@ const navId = "header-nav";
 
   const commands = {
     "motion-disable": () => {
-      reducedMotionStorage.set("reduced-motion", "reduce");
+      themeStorage.set("reduced-motion", "reduce");
       document.documentElement.setAttribute("data-motion", "reduce");
       disableGsap();
     },
     "motion-enable": () => {
-      reducedMotionStorage.set("reduced-motion", "no-preference");
+      themeStorage.set("reduced-motion", "no-preference");
       document.documentElement.setAttribute("data-motion", "no-preference");
       enableGsap();
     },
     "motion-default": () => {
-      reducedMotionStorage.remove("reduced-motion");
+      themeStorage.remove("reduced-motion");
       document.documentElement.removeAttribute("data-motion");
       enableGsap();
     },
     default: () => {
+      themeStorage.remove("color-scheme");
       document.documentElement.removeAttribute("data-theme");
     },
     light: () => {
+      themeStorage.set("color-scheme", "light");
       document.documentElement.setAttribute("data-theme", "light");
     },
     dark: () => {
+      themeStorage.set("color-scheme", "dark");
       document.documentElement.setAttribute("data-theme", "dark");
     },
     off: () => {
@@ -427,10 +430,21 @@ const navId = "header-nav";
     });
   });
 
-  const selectedReducedMotion = reducedMotionStorage.get("reduced-motion");
-  if (selectedReducedMotion === "reduce") {
-    document.querySelector<HTMLElement>(`[data-header-theme="motion-disable"]`)?.click();
-  } else if (selectedReducedMotion === "no-preference") {
-    document.querySelector<HTMLElement>(`[data-header-theme="motion-enable"]`)?.click();
+  {
+    const selectedReducedMotion = themeStorage.get("reduced-motion");
+    if (selectedReducedMotion === "reduce") {
+      document.querySelector<HTMLElement>(`[data-header-theme="motion-disable"]`)?.click();
+    } else if (selectedReducedMotion === "no-preference") {
+      document.querySelector<HTMLElement>(`[data-header-theme="motion-enable"]`)?.click();
+    }
+  }
+
+  {
+    const selectedColorScheme = themeStorage.get("color-scheme");
+    if (selectedColorScheme === "dark") {
+      document.querySelector<HTMLElement>(`[data-header-theme="dark"]`)?.click();
+    } else if (selectedColorScheme === "light") {
+      document.querySelector<HTMLElement>(`[data-header-theme="light"]`)?.click();
+    }
   }
 </script>

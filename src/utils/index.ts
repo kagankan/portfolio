@@ -8,4 +8,4 @@ export const LOADING_END_EVENT_TYPE = "loading-end";
 export const isReducedMotion = () =>
   getComputedStyle(document.documentElement).getPropertyValue("--reduced-motion").trim() === "reduce";
 
-export const reducedMotionStorage = createStorage({ "reduced-motion": "string" });
+export const themeStorage = createStorage({ "reduced-motion": "string", "color-scheme": "string" });

@@ -127,11 +127,21 @@ const skillSet = [
     }
     &::before {
       clip-path: polygon(100% 0%, 0% 50%, 100% 90%);
-      background-image: linear-gradient(190deg, #0046b7, #a5e0e5, #ffffff);
+      background-image: linear-gradient(
+        190deg,
+        var(--color-secondary),
+        var(--color-secondary-light),
+        var(--color-background)
+      );
     }
     &::after {
       clip-path: polygon(0% 100%, 0% 50%, 100% 90%, 100% 100%);
-      background-image: linear-gradient(190deg, #ffffff 50%, #a5ffe3, #54d398);
+      background-image: linear-gradient(
+        190deg,
+        var(--color-background) 50%,
+        var(--color-primary-light),
+        var(--color-primary)
+      );
     }
   }
 

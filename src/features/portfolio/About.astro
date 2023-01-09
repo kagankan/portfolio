@@ -58,7 +58,7 @@ import Section from "./Section.astro";
     padding-block-start: 120px;
     padding-block-end: var(--after-block-size);
     padding-inline: 13%;
-    background-image: linear-gradient(var(--color-green), var(--color-green-light), var(--color-green-gray));
+    background-image: linear-gradient(var(--color-primary), var(--color-primary-light), var(--color-primary-gray));
     @include sp {
       --left-width: 0%;
       padding-inline: 5% 10%;
@@ -70,7 +70,7 @@ import Section from "./Section.astro";
       inline-size: var(--left-width);
       display: block;
       content: "";
-      background-image: linear-gradient(var(--color-green-light), var(--color-green-lighter));
+      background-image: linear-gradient(var(--color-primary-light), var(--color-primary-lighter));
     }
     &::after {
       position: absolute;
@@ -80,7 +80,7 @@ import Section from "./Section.astro";
       block-size: var(--after-block-size);
       clip-path: polygon(0% var(--left-height), var(--left-width) var(--left-height), 100% 0%, 100% 100%, 0% 100%);
       content: "";
-      background-color: var(--color-green);
+      background-color: var(--color-primary);
     }
   }
   .About__Paragraph {
@@ -118,7 +118,7 @@ import Section from "./Section.astro";
       font-size: 2rem;
       font-weight: bold;
       line-height: 2;
-      color: var(--color-blue);
+      color: var(--color-secondary);
     }
     .About__ListItem {
       @include pc {

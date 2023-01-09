@@ -46,7 +46,7 @@ import Section from "./Section.astro";
       0% 100%
     );
     background-color: var(--color-background);
-    background-image: linear-gradient(var(--color-green-light), var(--color-background));
+    background-image: linear-gradient(var(--color-primary-light), var(--color-background));
   }
   .Contact__Inner {
     padding-block-start: 80px;
@@ -54,7 +54,7 @@ import Section from "./Section.astro";
     // padding-block-end: calc(var(--contact-cut-size) - 80px);
     padding-block-end: var(--contact-cut-size);
     padding-inline: 5%;
-    background-image: linear-gradient(165deg, var(--color-green), var(--color-green-light));
+    background-image: linear-gradient(165deg, var(--color-primary), var(--color-primary-light));
   }
   .Contact__List {
     display: grid;
@@ -72,7 +72,7 @@ import Section from "./Section.astro";
     transition-duration: var(--transition-fast);
     transition-property: background-color;
     @include hover {
-      background-color: var(--color-blue-light);
+      background-color: var(--color-secondary-light);
     }
     &::before {
       display: block;

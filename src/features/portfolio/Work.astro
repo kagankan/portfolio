@@ -70,13 +70,13 @@ import Section from "./Section.astro";
         font-family: var(--font-family-emphasis);
         font-size: 8rem;
         font-weight: var(--font-family-emphasis);
-        color: var(--color-green-light);
+        color: var(--color-primary-light);
         content: counter(work-count, decimal-leading-zero);
         inset-block-start: 0;
         inset-inline-start: 0;
       }
       :any-link {
-        color: var(--color-blue);
+        color: var(--color-secondary);
         text-decoration: underline;
         transition-duration: var(--transition-fast);
         transition-property: opacity;
@@ -109,7 +109,7 @@ import Section from "./Section.astro";
     p {
       margin-inline: auto;
       font-weight: 700;
-      color: var(--color-blue);
+      color: var(--color-secondary);
     }
     :any-link {
       display: grid;
@@ -121,7 +121,7 @@ import Section from "./Section.astro";
       margin-inline: auto;
       font-size: 2rem;
       color: var(--color-background);
-      background-color: var(--color-blue);
+      background-color: var(--color-secondary);
       transition-duration: var(--transition-fast);
       transition-property: opacity;
       @include hover {
@@ -146,9 +146,9 @@ import Section from "./Section.astro";
     pointer-events: none;
     background-image: linear-gradient(
       135deg,
-      var(--color-blue),
-      var(--color-blue-light),
-      var(--color-green-light),
+      var(--color-secondary),
+      var(--color-secondary-light),
+      var(--color-primary-light),
       var(--color-background)
     );
     transform: translateY(-20%);
@@ -167,12 +167,12 @@ import Section from "./Section.astro";
     &::before {
       inset-block-start: 0;
       inset-inline-start: 0;
-      background-image: linear-gradient(135deg, var(--color-blue), var(--color-blue-light));
+      background-image: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-light));
     }
     &::after {
       inset-block-end: 0;
       inset-inline-end: 0;
-      background-image: linear-gradient(135deg, var(--color-background), var(--color-green-light));
+      background-image: linear-gradient(135deg, var(--color-background), var(--color-primary-light));
     }
   }
 </style>
