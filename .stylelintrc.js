@@ -15,7 +15,7 @@ module.exports = {
       },
     ],
     "selector-pseudo-element-colon-notation": "double",
-    "selector-pseudo-class-no-unknown": [true, { ignorePseudoClasses: ["modal"] }],
+    "selector-pseudo-class-no-unknown": [true, { ignorePseudoClasses: ["modal", "global"] }],
     "scss/selector-no-union-class-name": true,
     "csstools/use-logical": true,
   },

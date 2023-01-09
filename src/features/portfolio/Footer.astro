@@ -25,6 +25,8 @@
 <script>
   import { gsap } from "gsap";
   import { ScrollTrigger } from "gsap/ScrollTrigger";
+  import { splitText } from "@/utils/splitText";
+
   gsap.registerPlugin(ScrollTrigger);
 
   const timeline = gsap.timeline({
@@ -36,17 +38,9 @@
   });
   const SPEED = 0.05;
 
-  const source = document.querySelector("[data-footer-text-source]");
-  const container = document.querySelector("[data-footer-text-container]");
+  const source = document.querySelector<HTMLElement>("[data-footer-text-source]");
+  const container = document.querySelector<HTMLElement>("[data-footer-text-container]");
   if (source && container) {
-    const text = source.textContent;
-    text?.split("").forEach((char, index) => {
-      const span = document.createElement("span");
-      span.ariaHidden = "true";
-      span.textContent = char;
-      container.appendChild(span);
-      gsap.set(span, { opacity: 0, yPercent: 100, ...(char === " " ? {} : { display: "inline-block" }) });
-      timeline.to(span, { opacity: 1, yPercent: 0, duration: 0.2 }, SPEED * index);
-    });
+    timeline.add(splitText(container, source, SPEED));
   }
 </script>

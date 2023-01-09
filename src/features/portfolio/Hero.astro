@@ -3,8 +3,12 @@
   <div class="Hero__Inner">
     <p class="Hero__Label">Frontend engineer</p>
     <h1 class="Hero__Heading">
-      <span class="Hero__Heading__Name">KISHI YOSHIMARU</span>
-      <span class="Hero__Heading__Title">PORTFOLIO</span>
+      <span class="Hero__Heading__Name" data-hero-name-container
+        ><span class="tw-sr-only" data-hero-name-source>KISHI YOSHIMARU</span>
+      </span>
+      <span class="Hero__Heading__Title" data-hero-title-container
+        ><span class="tw-sr-only" data-hero-title-source>PORTFOLIO</span>
+      </span>
     </h1>
   </div>
 </div>
@@ -16,18 +20,23 @@
     --hero-bg-y-3: 125%;
     --hero-before-mask: 100%;
     --hero-after-mask: 0%;
-    --hero-heading-font-size: clamp(2.5rem, (100vw - 1300px) * 0.12 + 9rem, 9rem);
+    @include pc {
+      --hero-heading-font-size: clamp(2.5rem, (100vw - 1300px) * 0.15 + 10rem, 10rem);
+    }
+    @include sp {
+      --hero-heading-font-size: 25vw;
+    }
 
     position: relative;
     display: grid;
     align-items: center;
     padding-block-end: 40px;
-    margin-inline-start: var(--section-label-width);
     overflow: hidden;
     font-family: var(--font-family-emphasis);
     block-size: 80vh;
     @include pc {
-      padding-inline: 8% 12%;
+      padding-inline: 7% 11%;
+      margin-inline-start: var(--section-label-width);
     }
     @include sp {
       padding-inline: 4% 6%;
@@ -80,44 +89,101 @@
     font-size: var(--hero-heading-font-size);
   }
   .Hero__Label {
-    position: absolute;
-    font-size: clamp(1.25rem, 0.4em, 2.5rem);
+    --clip-size: 0%;
+    --overlay-right: 0%;
+    --overlay-left: 0%;
+    clip-path: polygon(0% 0%, 0% 110%, var(--clip-size) 110%, var(--clip-size) 0%);
     line-height: 1;
     color: var(--color-secondary);
     background-color: var(--color-primary-light);
-    inset-block-start: calc(var(--hero-heading-font-size) * 0.8 - 2em);
-    inset-inline-end: calc(var(--hero-heading-font-size) * -0.2);
+    @include pc {
+      position: absolute;
+      font-size: clamp(1.25rem, 0.4em, 3.2rem);
+      inset-block-start: calc(var(--hero-heading-font-size) * 0.8 - 2em);
+      inset-inline-end: calc(var(--hero-heading-font-size) * -0.2);
+    }
+    @include sp {
+      position: relative;
+      width: fit-content;
+      margin-block-end: 0.5em;
+      font-size: clamp(1.25rem, 0.3em, 3.2rem);
+    }
+    &::after {
+      position: absolute;
+      inset-block: 0;
+      inset-inline-end: var(--overlay-right);
+      inset-inline-start: var(--overlay-left);
+      display: block;
+      content: "";
+      background-color: var(--color-secondary);
+    }
   }
   .Hero__Heading {
     display: grid;
     grid-auto-columns: minmax(0, 1fr);
     row-gap: 0.2em;
-    letter-spacing: 0.05em;
   }
   .Hero__Heading__Name {
+    display: flex;
+    flex-wrap: wrap;
     color: var(--color-secondary);
+    @include pc {
+      letter-spacing: 0.02em;
+    }
+    @include sp {
+      justify-content: space-between;
+    }
+    :global([data-index="5"]) {
+      // 空白位置で改行する
+      width: 100%;
+    }
   }
   .Hero__Heading__Title {
-    justify-self: end;
-    color: var(--color-background);
+    @include pc {
+      justify-self: end;
+      font-size: 0.75em;
+      color: var(--color-background);
+    }
+    @include sp {
+      justify-self: center;
+      font-size: 0.5em;
+      color: var(--color-primary-dark);
+    }
   }
 </style>
 
 <script>
   import { gsap } from "gsap";
   import { LOADING_END_EVENT_TYPE, isReducedMotion } from "@/utils";
+  import { splitText } from "@/utils/splitText";
 
+  const nameContainer = document.querySelector<HTMLElement>("[data-hero-name-container]");
+  const nameSource = document.querySelector<HTMLElement>("[data-hero-name-source]");
+  const titleContainer = document.querySelector<HTMLElement>("[data-hero-title-container]");
+  const titleSource = document.querySelector<HTMLElement>("[data-hero-title-source]");
+  gsap.set(".Hero", { "--hero-before-mask": `0%`, "--hero-after-mask": `100%` });
+  const timeline = gsap.timeline({ paused: true });
+  timeline
+    .fromTo(".Hero", { "--hero-before-mask": "0%" }, { "--hero-before-mask": "100%", duration: 0.5 })
+    .fromTo(".Hero", { "--hero-after-mask": "100%" }, { "--hero-after-mask": "0%", duration: 0.5 });
+  if (nameContainer && nameSource) {
+    timeline.add(splitText(nameContainer, nameSource, 0.04), "-=0.2");
+  }
+  if (titleContainer && titleSource) {
+    timeline.add(splitText(titleContainer, titleSource, 0.03));
+  }
+  timeline
+    .to(".Hero__Label", { "--clip-size": "100%", duration: 0.2 })
+    .to(".Hero__Label", { "--overlay-left": "100%", duration: 0.2 });
   if (!isReducedMotion()) {
-    gsap.set(".Hero", { "--hero-before-mask": `0%`, "--hero-after-mask": `100%` });
     window.addEventListener(
       LOADING_END_EVENT_TYPE,
       () => {
-        gsap
-          .timeline()
-          .fromTo(".Hero", { "--hero-before-mask": "0%" }, { "--hero-before-mask": "100%", duration: 0.5 })
-          .fromTo(".Hero", { "--hero-after-mask": "100%" }, { "--hero-after-mask": "0%", duration: 0.5 });
+        timeline.play();
       },
       { once: true }
     );
+  } else {
+    timeline.seek(timeline.duration());
   }
 </script>
