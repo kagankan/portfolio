@@ -11,7 +11,8 @@ const navId = "header-nav";
 
   <nav id={navId}>
     <ul class="Header__Links">
-      <li><a href="#top" aria-current="true">トップ</a></li>
+      {/* TODO: スクロールに応じて aria-current="true" を切り替えてカレント表示をする機能を追加したい */}
+      <li><a href="#top">トップ</a></li>
       <li><a href="#about">自己紹介</a></li>
       <li><a href="#skill">スキルセット</a></li>
       <li><a href="#work">活動</a></li>
@@ -153,8 +154,9 @@ const navId = "header-nav";
     }
     a {
       display: block;
-      padding: 10px 16px;
+      padding: 8px 16px 10px;
       font-weight: 700;
+      border-radius: 8px;
       transition-duration: var(--transition-fast);
       transition-property: color, background-color;
       &[aria-current] {
