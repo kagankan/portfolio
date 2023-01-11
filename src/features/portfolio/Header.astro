@@ -20,9 +20,9 @@ const navId = "header-nav";
     </ul>
     <div class="Header__Controls">
       <details>
-        <summary>アニメーション</summary>
+        <summary id="setting-animation">アニメーション</summary>
         <div class="Header__Popup" data-details-content>
-          <ul role="radiogroup">
+          <ul role="radiogroup" aria-labelledby="setting-animation">
             <li><button role="radio" data-header-theme="motion-default" aria-checked="true">OS設定</button></li>
             <li><button role="radio" data-header-theme="motion-enable" aria-checked="false">オン</button></li>
             <li><button role="radio" data-header-theme="motion-disable" aria-checked="false">オフ</button></li>
