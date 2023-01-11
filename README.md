@@ -1,5 +1,7 @@
 # portfolio
 
+https://kagankan.github.io/portfolio/
+
 ## サイト・リポジトリの目的
 
 - ポートフォリオサイトで自己紹介をする。
@@ -106,6 +108,9 @@ interfaceには予期しない上書きの可能性があるなどの危険が�
 // NOTE: 補足情報を書く
 ```
 
+<!-- 
+MEMO:
+
 ## フォント検討
 
 Google FontsにFuturaがないので代替を検討
@@ -123,3 +128,5 @@ https://fonts.google.com/specimen/Urbanist
 （一貫したルールを持たせるため）
 
 セクション内で背景色の明暗が変わるとコントラスト担保が難しいため調整したい
+
+-->
