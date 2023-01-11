@@ -1,0 +1,35 @@
+---
+import HeadingPrimary from "../HeadingPrimary/HeadingPrimary.astro";
+import Section from "../Section/Section.astro";
+import "./Work.scss";
+---
+
+<Section label="Work">
+  <div class="Work__Inner">
+    <HeadingPrimary decoration="Work">活動</HeadingPrimary>
+    <ul class="Work__List">
+      <li>
+        <h3>OSS活動</h3>
+        <p>
+          使用するライブラリ等にいくつかコントリビュートしています。最近ではMarkuplintのWebサイトメンテナとしてお手伝いしています。
+          <a href="https://markuplint.dev/community#maintainers" target="_blank" rel="noopener noreferrer"
+            >https://markuplint.dev/community#maintainers</a
+          >
+        </p>
+      </li>
+      <li>
+        <h3>技術記事執筆</h3>
+        <p>
+          Zennに技術記事を投稿しています。HTML・CSSの話題が主です。<br />
+          <a href="https://zenn.dev/kagan" target="_blank" rel="noopener noreferrer">https://zenn.dev/kagan</a>
+        </p>
+      </li>
+    </ul>
+    <!-- TODO: 準備でき次第掲載 -->
+    <!-- <div class="Work__ClientWork">
+      <p>実績の詳細はお問い合わせください</p>
+      <a href="">CLIENT WORK</a>
+    </div> -->
+    <div class="Work__DecorationBox"></div>
+  </div>
+</Section>

@@ -1,0 +1,34 @@
+---
+import HeadingPrimary from "../HeadingPrimary/HeadingPrimary.astro";
+import Section from "../Section/Section.astro";
+import "./Contact.scss";
+---
+
+<Section label="Contact" class="Contact">
+  <div class="Contact__Inner">
+    <HeadingPrimary decoration="Contact">ご連絡</HeadingPrimary>
+    <ul class="Contact__List">
+      <li>
+        <a href="https://twitter.com/kagan_dev" target="_blank" rel="noopener noreferrer" class="Contact__Link twitter">
+          <div>
+            <h3>Twitter</h3>
+            <p>なにかございましたらリプライかDMでご連絡ください。</p>
+          </div>
+        </a>
+      </li>
+      <li>
+        <a
+          href="https://github.com/kagankan/portfolio"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="Contact__Link github"
+        >
+          <div>
+            <h3>GitHub</h3>
+            <p>このページのソースコードを公開しています！</p>
+          </div>
+        </a>
+      </li>
+    </ul>
+  </div>
+</Section>

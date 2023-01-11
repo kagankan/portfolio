@@ -1,0 +1,84 @@
+.SkillCard {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background-color: var(--color-background-overlay);
+
+  > :nth-child(1) {
+    flex-basis: 88px;
+  }
+  > :nth-child(2) {
+    flex-basis: 0;
+    flex-grow: 9999;
+    min-width: 70%;
+  }
+}
+.SkillCard__Image {
+  padding: 2%;
+  background-color: #fff;
+  img {
+    width: 100%;
+    aspect-ratio: 1;
+  }
+}
+.SkillCard__Head {
+  display: grid;
+  grid-auto-flow: column;
+  align-items: baseline;
+  justify-content: space-between;
+}
+.SkillCard__Heading {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+}
+.SkillCard__Term {
+  font-size: 0.875rem;
+  color: var(--color-secondary);
+}
+.SkillCard__Value {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  column-gap: 20px;
+  align-items: center;
+  margin-block-start: 10px;
+}
+label {
+  font-size: 0.875rem;
+  font-weight: 700;
+}
+meter {
+  --meter-height: 20px;
+  width: 100%;
+  height: var(--meter-height);
+  // 背景
+  // Firefoxではmeter自体が背景、Chromeでは-webkit-meter-barが背景
+  @mixin bar {
+    height: var(--meter-height);
+    padding: 2px;
+    background: #fff;
+    border: none;
+    border-radius: 9999px;
+  }
+  @-moz-document url-prefix() {
+    @include bar;
+  }
+  &::-webkit-meter-bar {
+    @include bar;
+  }
+  // 棒
+  @mixin value {
+    background-image: linear-gradient(to right, var(--color-secondary) 10%, #00b7ae, var(--color-primary) 90%);
+    background-size: calc((100 / var(--value)) * 100%);
+    border-radius: inherit;
+  }
+  &::-webkit-meter-optimum-value {
+    @include value;
+  }
+  &::-moz-meter-bar {
+    @include value;
+  }
+}

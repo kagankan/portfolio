@@ -1,0 +1,36 @@
+---
+import { randomUUID } from "node:crypto";
+import Img from "@/components/Img/Img.astro";
+import type { ComponentProps } from "@/utils";
+import "./SkillCard.scss";
+
+export type Props = {
+  name: string;
+  /** 0~100 */
+  value: number;
+  term: string;
+  icon: ComponentProps<typeof Img>["src"];
+  /** アイコン画像の取得元 */
+  iconSource?: `http${string}`;
+};
+
+const { name, value, term, icon } = Astro.props;
+const id = randomUUID();
+---
+
+<div class="SkillCard" style={{ "--value": value }}>
+  <div class="SkillCard__Image">
+    <Img src={icon} alt="" />
+  </div>
+  <div>
+    <div class="SkillCard__Head">
+      <h3 class="SkillCard__Heading">{name}</h3>
+      <p class="SkillCard__Term">{term}</p>
+    </div>
+    <div class="SkillCard__Value">
+      <label for={id}>親密度</label><meter id={id} value={value} min="0" max="100" title={`${value}%`}></meter><span
+        >{value}%</span
+      >
+    </div>
+  </div>
+</div>

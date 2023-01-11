@@ -1,0 +1,51 @@
+---
+import "./Header.scss";
+const navId = "header-nav";
+---
+
+<header class="Header">
+  <button class="Header__NavToggle" data-header-nav-toggle aria-controls={navId} aria-expanded="false">
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+
+  <nav id={navId}>
+    <ul class="Header__Links">
+      {/* TODO: スクロールに応じて aria-current="true" を切り替えてカレント表示をする機能を追加したい */}
+      <li><a href="#top">トップ</a></li>
+      <li><a href="#about">自己紹介</a></li>
+      <li><a href="#skill">スキルセット</a></li>
+      <li><a href="#work">活動</a></li>
+      <li><a href="#contact">ご連絡</a></li>
+    </ul>
+    <div class="Header__Controls">
+      <details>
+        <summary id="setting-animation">アニメーション</summary>
+        <div class="Header__Popup" data-details-content>
+          <ul role="radiogroup" aria-labelledby="setting-animation">
+            <li><button role="radio" data-header-theme="motion-default" aria-checked="true">OS設定</button></li>
+            <li><button role="radio" data-header-theme="motion-enable" aria-checked="false">オン</button></li>
+            <li><button role="radio" data-header-theme="motion-disable" aria-checked="false">オフ</button></li>
+          </ul>
+        </div>
+      </details>
+      <details>
+        <summary>テーマ</summary>
+        <div class="Header__Popup" data-details-content>
+          <ul role="radiogroup">
+            <li><button role="radio" data-header-theme="default" aria-checked="true">OS設定</button></li>
+            <li><button role="radio" data-header-theme="light" aria-checked="false">ライト</button></li>
+            <li><button role="radio" data-header-theme="dark" aria-checked="false">ダーク</button></li>
+          </ul>
+          <ul role="radiogroup">
+            <li><button role="radio" data-header-theme="on" aria-checked="true">CSS有効</button></li>
+            <li><button role="radio" data-header-theme="off" aria-checked="false">CSS無効</button></li>
+          </ul>
+        </div>
+      </details>
+    </div>
+  </nav>
+</header>
+
+<script src="./Header.ts"></script>

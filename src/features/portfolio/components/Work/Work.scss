@@ -1,0 +1,141 @@
+.Work__Inner {
+  position: relative;
+  z-index: 0;
+  padding-block: 120px;
+  padding-inline: 5%;
+}
+.Work__List {
+  max-width: 1000px;
+  margin-block-start: 60px;
+  counter-reset: work-count;
+  @include pc {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    column-gap: 5%;
+  }
+  > li {
+    position: relative;
+    z-index: 0;
+    padding-block-start: 80px;
+    padding-inline-start: 16%;
+    counter-increment: work-count;
+    &:not(:first-child) {
+      @include pc {
+        margin-block-start: 120px;
+      }
+      @include sp {
+        margin-block-start: 40px;
+      }
+    }
+
+    &::before {
+      position: absolute;
+      z-index: -1;
+      font-family: var(--font-family-emphasis);
+      font-size: 8rem;
+      font-weight: var(--font-family-emphasis);
+      color: var(--color-primary-light);
+      content: counter(work-count, decimal-leading-zero);
+      inset-block-start: 0;
+      inset-inline-start: 0;
+    }
+    :any-link {
+      color: var(--color-secondary);
+      text-decoration: underline;
+      transition-duration: var(--transition-fast);
+      transition-property: opacity;
+      @include hover {
+        opacity: 0.7;
+      }
+      &[target="_blank"]::after {
+        display: inline-block;
+        width: 1em;
+        height: 1em;
+        margin-inline-start: 0.25em;
+        vertical-align: middle;
+        content: "";
+        background-color: currentColor;
+        mask-image: var(--icon-open-in-new);
+        mask-position: center;
+        mask-repeat: no-repeat;
+      }
+    }
+  }
+  h3 {
+    font-size: 2rem;
+    font-weight: bold;
+  }
+}
+
+.Work__ClientWork {
+  margin-block-start: 120px;
+  text-align: center;
+  p {
+    margin-inline: auto;
+    font-weight: 700;
+    color: var(--color-secondary);
+  }
+  :any-link {
+    display: grid;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    min-height: 2em;
+    margin-block-start: 20px;
+    margin-inline: auto;
+    font-size: 2rem;
+    color: var(--color-background);
+    background-color: var(--color-secondary);
+    transition-duration: var(--transition-fast);
+    transition-property: opacity;
+    @include hover {
+      opacity: 0.7;
+    }
+  }
+}
+
+.Work__DecorationBox {
+  --block-size: min(30vw, 500px);
+  --rect-size: 40%;
+  position: absolute;
+  z-index: -1;
+  clip-path: polygon(
+    0% 0%,
+    var(--rect-size) 0%,
+    100% calc(100% - var(--rect-size)),
+    100% 100%,
+    calc(100% - var(--rect-size)) 100%,
+    0% var(--rect-size)
+  );
+  pointer-events: none;
+  background-image: linear-gradient(
+    135deg,
+    var(--color-secondary),
+    var(--color-secondary-light),
+    var(--color-primary-light),
+    var(--color-background)
+  );
+  transform: translateY(-20%);
+  inset-block-start: 0;
+  inset-inline-end: 10%;
+  block-size: var(--block-size);
+  inline-size: var(--block-size);
+  &::before,
+  &::after {
+    position: absolute;
+    display: block;
+    content: "";
+    block-size: var(--rect-size);
+    inline-size: var(--rect-size);
+  }
+  &::before {
+    inset-block-start: 0;
+    inset-inline-start: 0;
+    background-image: linear-gradient(135deg, var(--color-secondary), var(--color-secondary-light));
+  }
+  &::after {
+    inset-block-end: 0;
+    inset-inline-end: 0;
+    background-image: linear-gradient(135deg, var(--color-background), var(--color-primary-light));
+  }
+}

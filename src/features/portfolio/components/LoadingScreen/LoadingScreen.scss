@@ -1,0 +1,45 @@
+.LoadingScreen {
+  --mesh-current: 0px;
+  --line-current: 0%;
+  --line-vertical: var(--line-current);
+  --line-horizontal: var(--line-current);
+  --line-color: #fff;
+
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-index-loading-screen);
+  background-image: linear-gradient(120deg, var(--color-primary) 20%, var(--color-secondary-light) 80%);
+  mask-composite: intersect;
+  mask-image: linear-gradient(
+      to bottom,
+      transparent var(--mesh-current),
+      #000 var(--mesh-current) calc(var(--mesh-size) - var(--mesh-current)),
+      transparent calc(var(--mesh-size) - var(--mesh-current))
+    ),
+    linear-gradient(
+      to right,
+      transparent var(--mesh-current),
+      #000 var(--mesh-current) calc(var(--mesh-size) - var(--mesh-current)),
+      transparent calc(var(--mesh-size) - var(--mesh-current))
+    );
+  mask-size: var(--mesh-size) var(--mesh-size);
+
+  // 縦線
+  &::before {
+    position: absolute;
+    inset: 0;
+    content: "";
+    background-image: linear-gradient(to right, var(--line-color) 1px, transparent 1px);
+    background-repeat: repeat no-repeat;
+    background-size: var(--mesh-size) var(--line-vertical);
+  }
+  // 横線
+  &::after {
+    position: absolute;
+    inset: 0;
+    content: "";
+    background-image: linear-gradient(var(--line-color) 1px, transparent 1px);
+    background-repeat: no-repeat repeat;
+    background-size: var(--line-horizontal) var(--mesh-size);
+  }
+}

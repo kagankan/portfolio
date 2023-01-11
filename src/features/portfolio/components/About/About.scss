@@ -1,0 +1,119 @@
+// .About {
+// }
+.About__Inner {
+  --left-height: 70%;
+  --left-width: 10%;
+  --after-block-size: 300px;
+
+  position: relative;
+  padding-block-start: 120px;
+  padding-block-end: var(--after-block-size);
+  padding-inline: 13%;
+  background-image: linear-gradient(var(--color-primary), var(--color-primary-light), var(--color-primary-gray));
+  @include sp {
+    --left-width: 0%;
+    padding-inline: 5% 10%;
+  }
+  &::before {
+    position: absolute;
+    inset-block: 0;
+    inset-inline-start: 0;
+    inline-size: var(--left-width);
+    display: block;
+    content: "";
+    background-image: linear-gradient(var(--color-primary-light), var(--color-primary-lighter));
+  }
+  &::after {
+    position: absolute;
+    inset-inline: 0;
+    inset-block-end: 0;
+    display: block;
+    block-size: var(--after-block-size);
+    clip-path: polygon(0% var(--left-height), var(--left-width) var(--left-height), 100% 0%, 100% 100%, 0% 100%);
+    content: "";
+    background-color: var(--color-primary);
+  }
+}
+.About__Paragraph {
+  line-height: 2.3;
+}
+.About__List {
+  margin-block-start: 100px;
+  counter-reset: about-count;
+  > li {
+    position: relative;
+    z-index: 0;
+    padding-block-start: 60px;
+    padding-inline-start: min(16%, 80px);
+    counter-increment: about-count;
+    &:not(:first-child) {
+      @include pc {
+        margin-block-start: 80px;
+      }
+      @include sp {
+        margin-block-start: 40px;
+      }
+    }
+    &::before {
+      position: absolute;
+      z-index: -1;
+      font-family: var(--font-family-emphasis);
+      font-size: 8rem;
+      color: var(--color-background-overlay);
+      content: counter(about-count, decimal-leading-zero);
+      inset-block-start: 0;
+      inset-inline-start: 0;
+    }
+  }
+  h3 {
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 2;
+    color: var(--color-secondary);
+  }
+  .About__ListItem {
+    @include pc {
+      display: grid;
+    }
+    row-gap: 20px;
+    column-gap: 20px;
+    &:nth-child(1) {
+      @include pc {
+        grid-template-areas:
+          "heading paragraph"
+          "image   paragraph";
+      }
+    }
+    &:nth-child(2) {
+      @include pc {
+        grid-template-areas:
+          "heading   image"
+          "paragraph paragraph";
+        margin-inline-start: 20%;
+      }
+    }
+    &:nth-child(3) {
+      @include pc {
+        grid-template-areas:
+          "heading  "
+          "image    "
+          "paragraph";
+        margin-inline-start: 10%;
+      }
+    }
+
+    h3 {
+      grid-area: heading;
+    }
+    img {
+      display: block;
+      grid-area: image;
+      max-width: 292px;
+      max-height: 150px;
+      object-fit: contain;
+    }
+    p {
+      grid-area: paragraph;
+    }
+  }
+}

@@ -1,0 +1,16 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import "./Section.scss";
+
+export type Props = HTMLAttributes<"section"> & {
+  label: string;
+};
+const { label, class: className, ...restProps } = Astro.props;
+---
+
+<section class:list={["Section", className]} {...restProps}>
+  <div class="Section__StickyLabel" aria-hidden="true" data-visual-only={label}></div>
+  <div>
+    <slot />
+  </div>
+</section>

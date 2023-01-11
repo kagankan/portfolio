@@ -10,9 +10,10 @@ import logoThree from "@/assets/images/logo-three.svg";
 import logoTs from "@/assets/images/logo-ts.svg";
 import logoVue from "@/assets/images/logo-vue.svg";
 import type { ComponentProps } from "@/utils/index";
-import HeadingPrimary from "./HeadingPrimary.astro";
-import Section from "./Section.astro";
-import SkillCard from "./SkillCard.astro";
+import HeadingPrimary from "../HeadingPrimary/HeadingPrimary.astro";
+import Section from "../Section/Section.astro";
+import SkillCard from "../SkillCard/SkillCard.astro";
+import "./SkillSet.scss";
 
 const skillSet = [
   {
@@ -108,47 +109,3 @@ const skillSet = [
     </ul>
   </div>
 </Section>
-
-<style lang="scss">
-  .SkillSet__Inner {
-    position: relative;
-    padding-block-start: 120px;
-    padding-block-end: 120px;
-    padding-inline: 5% 10%;
-    overflow: hidden;
-    &::before,
-    &::after {
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      display: block;
-      min-width: 1500px;
-      content: "";
-    }
-    &::before {
-      clip-path: polygon(100% 0%, 0% 50%, 100% 90%);
-      background-image: linear-gradient(
-        190deg,
-        var(--color-secondary),
-        var(--color-secondary-light),
-        var(--color-background)
-      );
-    }
-    &::after {
-      clip-path: polygon(0% 100%, 0% 50%, 100% 90%, 100% 100%);
-      background-image: linear-gradient(
-        190deg,
-        var(--color-background) 50%,
-        var(--color-primary-light),
-        var(--color-primary)
-      );
-    }
-  }
-
-  .SkillSetList {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 360px), 1fr));
-    gap: 1rem;
-    margin-block-start: 40px;
-  }
-</style>

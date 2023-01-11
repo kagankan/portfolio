@@ -1,0 +1,250 @@
+:root {
+  --header-height: 80px;
+}
+.Header {
+  position: sticky;
+  z-index: var(--z-index-header);
+  padding: 16px 5%;
+  background-color: var(--color-background);
+  transition-duration: var(--transition-fast);
+  transition-property: box-shadow;
+  inset-block-start: 0;
+  min-block-size: var(--header-height);
+  @include pc {
+    display: grid;
+    align-items: center;
+  }
+  @include sp {
+    max-height: 100vh;
+    overflow-y: auto;
+  }
+  &.is-scroll {
+    box-shadow: var(--shadow-medium);
+  }
+
+  nav {
+    @include pc {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+}
+
+.Header__NavToggle {
+  @include pc {
+    display: none;
+  }
+  @include sp {
+    position: relative;
+    display: grid;
+    align-items: center;
+    min-width: 48px;
+    min-height: 48px;
+    padding-block-start: 24px;
+    margin-inline-start: auto;
+    text-align: center;
+    border-radius: 4px;
+    transition-duration: var(--transition-fast);
+    transition-property: background-color;
+    @include hover {
+      background-color: var(--color-secondary-light);
+    }
+    &::after {
+      font-family: var(--font-family-emphasis);
+      font-size: 0.75rem;
+      content: "MENU";
+    }
+    > span {
+      position: absolute;
+      display: inline-block;
+      justify-self: center;
+      width: 45%;
+      height: 2px;
+      inset-block-start: 16px;
+      background-color: currentColor;
+      transition: transform 0.4s;
+      &:nth-of-type(1) {
+        transform: translateY(-6px);
+      }
+      &:nth-of-type(3) {
+        transform: translateY(6px);
+      }
+    }
+    &[aria-expanded="true"] {
+      &::after {
+        content: "CLOSE";
+      }
+      > span {
+        &:nth-of-type(1) {
+          transform: rotate(-135deg);
+        }
+        &:nth-of-type(2) {
+          opacity: 0;
+          transform: rotate(-90deg);
+        }
+        &:nth-of-type(3) {
+          transform: rotate(-45deg);
+        }
+      }
+    }
+  }
+}
+
+.Header__Links {
+  display: grid;
+  @include pc {
+    grid-auto-flow: column;
+    column-gap: 4px;
+    justify-content: start;
+  }
+  @include sp {
+    row-gap: 2px;
+  }
+  a {
+    display: block;
+    padding: 8px 16px 10px;
+    font-weight: 700;
+    border-radius: 8px;
+    transition-duration: var(--transition-fast);
+    transition-property: color, background-color;
+    &[aria-current] {
+      color: var(--color-secondary);
+      @include pc {
+        border-block-start: 1px solid var(--color-secondary);
+      }
+      @include sp {
+        border-inline-start: 1px solid var(--color-secondary);
+      }
+    }
+    @include hover {
+      color: var(--color-background);
+      background-color: var(--color-secondary);
+    }
+  }
+}
+.Header__Controls {
+  display: grid;
+  @include pc {
+    grid-auto-flow: column;
+    column-gap: 8px;
+  }
+  @include sp {
+    row-gap: 16px;
+    margin-block-start: 8px;
+  }
+
+  details {
+    position: relative;
+    @include sp {
+      border: 1px solid var(--color-primary-gray);
+      border-radius: 8px;
+    }
+    summary {
+      display: grid;
+      grid-auto-flow: column;
+      column-gap: 8px;
+      align-items: center;
+      justify-content: space-between;
+      font-weight: 700;
+      background-color: var(--color-background);
+      transition-duration: var(--transition-fast);
+      transition-property: color, background-color;
+      @include pc {
+        padding: 8px 16px;
+        border: 1px solid var(--color-primary-gray);
+        border-radius: 9999px;
+      }
+      @include sp {
+        padding: 12px 16px;
+        border-radius: 8px;
+      }
+      @include hover {
+        color: var(--color-background);
+        background-color: var(--color-secondary);
+      }
+      &::after {
+        display: inline-block;
+        width: 1.2em;
+        height: 1.2em;
+        content: "";
+        background-color: currentColor;
+        transition-duration: var(--transition-fast);
+        transition-property: transform;
+        mask-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="8 8 32 32"><path d="M24 30.2q-.25 0-.525-.1t-.525-.35L13.1 19.9q-.45-.45-.45-1.1 0-.65.45-1.1.45-.45 1.05-.45.6 0 1.05.45l8.8 8.8 8.8-8.8q.45-.45 1.075-.45t1.075.45q.45.45.45 1.075t-.45 1.075l-9.9 9.9q-.25.25-.5.35-.25.1-.55.1Z"/></svg>');
+      }
+    }
+    &[open]:not(.is-closing) summary::after {
+      transform: rotate(180deg);
+    }
+  }
+}
+.Header__Popup {
+  @include pc {
+    position: absolute;
+    inset-block-start: 50%;
+    z-index: -1;
+    width: max-content;
+    min-width: 100%;
+    padding-block-start: 1em;
+    overflow: hidden;
+    background-color: var(--color-background);
+    border-radius: 8px;
+    box-shadow: var(--shadow-high);
+  }
+  @include sp {
+    padding-block-end: 8px;
+  }
+  ul {
+    &:not(:first-child) {
+      &::before {
+        display: block;
+        width: calc(100%);
+        height: 1px;
+        margin-inline: auto;
+        content: "";
+        background-color: var(--color-primary-gray);
+      }
+    }
+  }
+  li {
+    position: relative;
+    @include pc {
+      padding: 4px;
+    }
+    @include sp {
+      padding: 2px 8px;
+    }
+    &:not(:first-child) {
+      @include pc {
+        &::before {
+          position: absolute;
+          inset-inline: 0;
+          display: block;
+          width: calc(100% - 10px * 2);
+          height: 1px;
+          margin-inline: auto;
+          content: "";
+          background-color: var(--color-primary-gray);
+          inset-block-start: 0;
+        }
+      }
+    }
+    button {
+      width: 100%;
+      padding: 12px 20px;
+      font-size: 0.9rem;
+      border: 1px solid transparent;
+      border-radius: 5px;
+      transition-duration: var(--transition-fast);
+      transition-property: background-color;
+      @include hover {
+        background-color: rgb(0, 0, 0, 0.1);
+      }
+      &[aria-checked="true"] {
+        border-color: var(--color-primary-gray);
+      }
+    }
+  }
+}

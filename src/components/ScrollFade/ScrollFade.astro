@@ -6,19 +6,7 @@
  * 1つのファイルで管理するため、templateなしのastroファイルの可能性を探る。
  * HTMLは出力されないものの、CSS/JSのバンドルのためどこかでimportはしないといけないので、Layoutでimportする。
  */
+import "./ScrollFade.scss";
 ---
 
-<style is:global>
-  [data-scroll-fade] {
-    opacity: 0;
-  }
-</style>
-
-<script>
-  import { gsap } from "gsap";
-  import { ScrollTrigger } from "gsap/ScrollTrigger";
-  gsap.registerPlugin(ScrollTrigger);
-  document.querySelectorAll("[data-scroll-fade]").forEach((element) => {
-    gsap.fromTo(element, { opacity: 0 }, { opacity: 1, scrollTrigger: element });
-  });
-</script>
+<script src="./ScrollFade.ts"></script>

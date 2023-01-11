@@ -1,0 +1,12 @@
+---
+import "./HeadingPrimary.scss";
+export type Props = {
+  decoration: string;
+};
+const { decoration } = Astro.props;
+---
+
+<h2 class="HeadingPrimary">
+  <span aria-hidden="true" data-visual-only={decoration}></span>
+  <slot />
+</h2>
