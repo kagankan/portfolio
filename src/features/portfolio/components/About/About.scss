@@ -10,7 +10,7 @@
   padding-block-start: 120px;
   padding-block-end: var(--after-block-size);
   @include pc {
-    padding-inline: 13%;
+    padding-inline: calc(var(--left-width) + 3%) 13%;
     background-image:
     //
       linear-gradient(to right, transparent var(--right-start), var(--color-primary-dark) var(--right-start)),
@@ -70,6 +70,12 @@
         margin-block-start: 40px;
       }
     }
+    &:nth-child(2) {
+      margin-inline-start: min((100vw - 500px) * 0.1, 20%);
+    }
+    &:nth-child(3) {
+      margin-inline-start: min((100vw - 500px) * 0.05, 10%);
+    }
     &::before {
       position: absolute;
       z-index: -1;
@@ -98,17 +104,17 @@
     }
     &:nth-child(1) {
       @include pc {
-        grid-template-areas:
-          "heading paragraph"
-          "image   paragraph";
+        grid-template:
+          "heading paragraph" auto
+          "image   paragraph" 1fr / 35% 1fr;
       }
     }
     &:nth-child(2) {
       @include pc {
-        grid-template-areas:
+        grid-template:
           "heading   image"
-          "paragraph paragraph";
-        margin-inline-start: 20%;
+          "paragraph paragraph" /
+          1fr auto;
       }
     }
     &:nth-child(3) {
@@ -117,7 +123,6 @@
           "heading  "
           "image    "
           "paragraph";
-        margin-inline-start: 10%;
       }
     }
 
