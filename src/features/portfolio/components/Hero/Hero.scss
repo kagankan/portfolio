@@ -19,8 +19,7 @@
   font-family: var(--font-family-emphasis);
   block-size: 80vh;
   @include pc {
-    padding-inline: 7% 11%;
-    margin-inline-start: var(--section-label-width);
+    padding-inline: 11%;
   }
   @include sp {
     padding-inline: 4% 6%;

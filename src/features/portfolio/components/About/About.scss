@@ -1,34 +1,23 @@
-// .About {
-// }
+.About {
+  background-image: linear-gradient(var(--color-primary-light), var(--color-background));
+}
 .About__Inner {
-  --left-height: 70%;
-  --left-width: 10%;
   --after-block-size: 300px;
   --right-start: min(90%, 85em);
 
   position: relative;
   padding-block-start: 120px;
   padding-block-end: var(--after-block-size);
+  padding-inline: var(--section-padding-inline);
   @include pc {
-    padding-inline: calc(var(--left-width) + 3%) 13%;
+    padding-inline-end: 13%;
     background-image:
     //
       linear-gradient(to right, transparent var(--right-start), var(--color-primary-dark) var(--right-start)),
       linear-gradient(var(--color-primary), var(--color-primary-light), var(--color-primary-gray));
   }
   @include sp {
-    --left-width: 0%;
-    padding-inline: var(--section-padding-inline);
     background-image: linear-gradient(var(--color-primary), var(--color-primary-light), var(--color-primary-gray));
-  }
-  &::before {
-    position: absolute;
-    inset-block: 0;
-    inset-inline-start: 0;
-    inline-size: var(--left-width);
-    display: block;
-    content: "";
-    background-image: linear-gradient(var(--color-primary-light), var(--color-primary-lighter));
   }
   &::after {
     position: absolute;
@@ -36,7 +25,7 @@
     inset-block-end: 0;
     display: block;
     block-size: var(--after-block-size);
-    clip-path: polygon(0% var(--left-height), var(--left-width) var(--left-height), 100% 0%, 100% 100%, 0% 100%);
+    clip-path: polygon(0% 70%, 100% 0%, 100% 100%, 0% 100%);
     content: "";
     background-color: var(--color-primary-dark);
   }
