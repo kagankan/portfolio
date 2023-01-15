@@ -5,7 +5,7 @@
   --hero-before-mask: 100%;
   --hero-after-mask: 0%;
   @include pc {
-    --hero-heading-font-size: clamp(2.5rem, (100vw - 1300px) * 0.15 + 10rem, 10rem);
+    --hero-heading-font-size: clamp(2.5rem, (100vw - 1300px) * 0.15 + 160px, 160px);
   }
   @include sp {
     --hero-heading-font-size: min(22.5vw, 150px);
