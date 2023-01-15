@@ -1,4 +1,5 @@
 import { gsap } from "gsap";
+import "./SplitText.scss";
 
 export const splitText = (container: HTMLElement, source: HTMLElement, speed = 0.05) => {
   const timeline = gsap.timeline();
@@ -6,7 +7,7 @@ export const splitText = (container: HTMLElement, source: HTMLElement, speed = 0
   text?.split("").forEach((char, index) => {
     const span = document.createElement("span");
     span.ariaHidden = "true";
-    span.textContent = char;
+    span.dataset.splitText = char.toString();
     span.dataset.index = index.toString();
     container.appendChild(span);
     gsap.set(span, { opacity: 0, yPercent: 50, ...(char === " " ? {} : { display: "inline-block" }) });

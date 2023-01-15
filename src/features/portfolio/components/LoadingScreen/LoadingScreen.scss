@@ -8,7 +8,11 @@
   position: fixed;
   inset: 0;
   z-index: var(--z-index-loading-screen);
-  background-image: linear-gradient(120deg, var(--color-primary) 20%, var(--color-secondary-light) 80%);
+  background-image: linear-gradient(to right, var(--line-color) 1px, transparent 1px),
+    // 縦線
+    linear-gradient(var(--line-color) 1px, transparent 1px); // 横線
+  background-repeat: repeat no-repeat, no-repeat repeat;
+  background-size: var(--mesh-size) var(--line-vertical), var(--line-horizontal) var(--mesh-size);
   mask-composite: intersect;
   mask-image: linear-gradient(
       to bottom,
@@ -24,22 +28,30 @@
     );
   mask-size: var(--mesh-size) var(--mesh-size);
 
-  // 縦線
+  // NOTE: background-positionによるアニメーションは描画負荷が高いため、transformを使用する
+  // https://takumifukasawa.hatenablog.com/entry/css-sprite-animation-gpu-rendering
   &::before {
     position: absolute;
-    inset: 0;
+    inset-block: 0;
+    z-index: -1;
+    width: 200%;
     content: "";
-    background-image: linear-gradient(to right, var(--line-color) 1px, transparent 1px);
-    background-repeat: repeat no-repeat;
-    background-size: var(--mesh-size) var(--line-vertical);
+    background-image: repeating-linear-gradient(
+      120deg,
+      var(--color-primary) 20%,
+      var(--color-secondary-light) 45% 55%,
+      var(--color-primary) 80%
+    );
+    background-size: 100% 100%;
+    animation: loading 2s infinite linear;
+    inset-inline-start: 0;
   }
-  // 横線
-  &::after {
-    position: absolute;
-    inset: 0;
-    content: "";
-    background-image: linear-gradient(var(--line-color) 1px, transparent 1px);
-    background-repeat: no-repeat repeat;
-    background-size: var(--line-horizontal) var(--mesh-size);
+  @keyframes loading {
+    from {
+      transform: translateX(-50%);
+    }
+    to {
+      transform: translateX(0%);
+    }
   }
 }

@@ -1,6 +1,6 @@
 import { gsap } from "gsap";
+import { splitText } from "@/components/SplitText/exports";
 import { LOADING_END_EVENT_TYPE, isReducedMotion } from "@/utils";
-import { splitText } from "@/utils/splitText";
 
 const nameContainer = document.querySelector<HTMLElement>("[data-hero-name-container]");
 const nameSource = document.querySelector<HTMLElement>("[data-hero-name-source]");

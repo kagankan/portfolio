@@ -4,17 +4,29 @@
   padding-block-end: 120px;
   padding-inline: 5% 10%;
   overflow: hidden;
+  @include pc {
+    --skill-set-bg-y-1: 0%;
+    --skill-set-bg-y-2: 50%;
+    --skill-set-bg-y-3: 90%;
+  }
+  @include sp {
+    --skill-set-bg-y-1: 20em;
+    --skill-set-bg-y-2: 35em;
+    --skill-set-bg-y-3: 50em;
+  }
   &::before,
   &::after {
     position: absolute;
     inset: 0;
     z-index: -1;
     display: block;
-    min-width: 1500px;
     content: "";
+    @include pc {
+      min-width: 1500px;
+    }
   }
   &::before {
-    clip-path: polygon(100% 0%, 0% 50%, 100% 90%);
+    clip-path: polygon(100% var(--skill-set-bg-y-1), 0% var(--skill-set-bg-y-2), 100% var(--skill-set-bg-y-3));
     background-image: linear-gradient(
       190deg,
       var(--color-secondary),
@@ -23,10 +35,10 @@
     );
   }
   &::after {
-    clip-path: polygon(0% 100%, 0% 50%, 100% 90%, 100% 100%);
+    clip-path: polygon(0% 100%, 0% var(--skill-set-bg-y-2), 100% var(--skill-set-bg-y-3), 100% 100%);
     background-image: linear-gradient(
       190deg,
-      var(--color-background) 50%,
+      var(--color-background) var(--skill-set-bg-y-2),
       var(--color-primary-light),
       var(--color-primary)
     );

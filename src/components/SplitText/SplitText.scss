@@ -1,0 +1,6 @@
+// CSSが有効なときのみ表示するため
+[data-split-text] {
+  &::after {
+    content: attr(data-split-text);
+  }
+}

@@ -8,7 +8,7 @@
     --hero-heading-font-size: clamp(2.5rem, (100vw - 1300px) * 0.15 + 10rem, 10rem);
   }
   @include sp {
-    --hero-heading-font-size: 25vw;
+    --hero-heading-font-size: min(22.5vw, 150px);
   }
 
   position: relative;
@@ -106,6 +106,10 @@
   display: grid;
   grid-auto-columns: minmax(0, 1fr);
   row-gap: 0.2em;
+  @include sp {
+    width: 3.2em;
+    margin-inline: auto;
+  }
 }
 .Hero__Heading__Name {
   display: flex;
@@ -129,7 +133,8 @@
     color: var(--color-background);
   }
   @include sp {
-    justify-self: center;
+    display: flex;
+    justify-content: space-between;
     font-size: 0.5em;
     color: var(--color-primary-dark);
   }
