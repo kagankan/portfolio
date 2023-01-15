@@ -18,7 +18,7 @@
   // TODO: pc, spで分ける？
   // padding-block-end: calc(var(--contact-cut-size) - 80px);
   padding-block-end: var(--contact-cut-size);
-  padding-inline: 5%;
+  padding-inline: var(--section-padding-inline);
   background-image: linear-gradient(165deg, var(--color-primary), var(--color-primary-light));
 }
 .Contact__List {
@@ -31,18 +31,26 @@
   grid-auto-flow: column;
   column-gap: 16px;
   align-items: center;
-  padding: 16px 32px;
   background-color: var(--color-background);
-  border-radius: 9999px;
   transition-duration: var(--transition-fast);
   transition-property: background-color;
+  @include pc {
+    padding: 16px 32px;
+    font-size: 1rem;
+    border-radius: 9999px;
+  }
+  @include sp {
+    padding: 12px 24px;
+    font-size: 0.875rem;
+    border-radius: 16px;
+  }
   @include hover {
     background-color: var(--color-secondary-light);
   }
   &::before {
     display: block;
-    width: 36px;
-    height: 36px;
+    width: 2.25em;
+    height: 2.25em;
     content: "";
     background-color: currentColor;
     mask-position: center;
@@ -73,5 +81,10 @@
     font-size: 1.25em;
     font-weight: 700;
     line-height: 1.5;
+  }
+  p {
+    @include sp {
+      line-height: 1.5;
+    }
   }
 }

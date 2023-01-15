@@ -57,6 +57,7 @@
 
   // コンポーネント関連
   --section-label-width: max(7.5%, 2em);
+  --section-padding-inline: 5% 10%;
 
   // カラーテーマ
   &[data-theme="light"] {

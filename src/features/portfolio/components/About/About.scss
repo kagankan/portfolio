@@ -9,15 +9,17 @@
   position: relative;
   padding-block-start: 120px;
   padding-block-end: var(--after-block-size);
-  padding-inline: 13%;
-  background-image:
+  @include pc {
+    padding-inline: 13%;
+    background-image:
     //
-    linear-gradient(to right, transparent var(--right-start), var(--color-primary-dark) var(--right-start)),
-    linear-gradient(var(--color-primary), var(--color-primary-light), var(--color-primary-gray));
-
+      linear-gradient(to right, transparent var(--right-start), var(--color-primary-dark) var(--right-start)),
+      linear-gradient(var(--color-primary), var(--color-primary-light), var(--color-primary-gray));
+  }
   @include sp {
     --left-width: 0%;
-    padding-inline: 5% 10%;
+    padding-inline: var(--section-padding-inline);
+    background-image: linear-gradient(var(--color-primary), var(--color-primary-light), var(--color-primary-gray));
   }
   &::before {
     position: absolute;

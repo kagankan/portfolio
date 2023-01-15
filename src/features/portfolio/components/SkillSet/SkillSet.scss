@@ -2,7 +2,7 @@
   position: relative;
   padding-block-start: 120px;
   padding-block-end: 120px;
-  padding-inline: 5% 10%;
+  padding-inline: var(--section-padding-inline);
   overflow: hidden;
   @include pc {
     --skill-set-bg-y-1: 0%;

@@ -2,23 +2,31 @@
   position: relative;
   z-index: 0;
   padding-block: 120px;
-  padding-inline: 5%;
+  padding-inline: var(--section-padding-inline);
 }
 .Activity__List {
   max-width: 1000px;
-  margin-block-start: 60px;
   counter-reset: work-count;
   @include pc {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     column-gap: 5%;
+    margin-block-start: 60px;
+  }
+  @include sp {
+    margin-block-start: 40px;
   }
   > li {
     position: relative;
     z-index: 0;
     padding-block-start: 80px;
-    padding-inline-start: 16%;
     counter-increment: work-count;
+    @include pc {
+      padding-inline-start: 16%;
+    }
+    @include sp {
+      padding-inline-start: 40px;
+    }
     &:not(:first-child) {
       @include pc {
         margin-block-start: 120px;
@@ -64,6 +72,7 @@
   h3 {
     font-size: 2rem;
     font-weight: bold;
+    line-height: 1.5;
   }
 }
 

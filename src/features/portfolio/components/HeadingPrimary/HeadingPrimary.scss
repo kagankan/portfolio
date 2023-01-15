@@ -1,6 +1,6 @@
 .HeadingPrimary {
   // 装飾目的のため、remを使用しないでも問題ない判断とする
-  --decoration-font-size: clamp(64px, (100vw - 1500px) * 0.2 + 240px, 240px);
+  --decoration-font-size: clamp(60px, (100vw - 1600px) * 0.16 + 240px, 240px);
 
   position: relative;
   z-index: 0;
@@ -17,7 +17,6 @@
   [data-visual-only] {
     position: absolute;
     z-index: -1;
-    width: max-content;
     font-family: var(--font-family-emphasis);
     font-size: var(--decoration-font-size);
     color: var(--color-primary-light);
