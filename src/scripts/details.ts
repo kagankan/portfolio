@@ -1,11 +1,11 @@
 import { gsap } from "gsap";
+import { isReducedMotion } from "@/utils";
 
 const DETAILS_SELECTOR = "details";
 const SUMMARY_SELECTOR = "summary";
 const CONTENT_SELECTOR = "[data-details-content]";
 const BEFORE_CLOSE_CLASS = "is-closing";
-
-const getDuration = () => getComputedStyle(document.documentElement).getPropertyValue("--transition-fast");
+const getDuration = () => (isReducedMotion() ? 0 : 0.2);
 
 const allDetails = document.querySelectorAll(DETAILS_SELECTOR);
 allDetails.forEach((details) => {

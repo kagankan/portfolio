@@ -8,9 +8,10 @@ const navId = "header-nav";
     <span></span>
     <span></span>
     <span></span>
+    <span class="tw-sr-only">メニュー開閉</span>
   </button>
 
-  <nav id={navId}>
+  <nav id={navId} class="Header__Nav">
     <ul class="Header__Links">
       {/* TODO: スクロールに応じて aria-current="true" を切り替えてカレント表示をする機能を追加したい */}
       <li><a href="#top">トップ</a></li>
@@ -31,16 +32,21 @@ const navId = "header-nav";
         </div>
       </details>
       <details>
-        <summary>テーマ</summary>
+        <summary id="setting-theme">テーマ</summary>
         <div class="Header__Popup" data-details-content>
-          <ul role="radiogroup">
+          <ul role="radiogroup" aria-labelledby="setting-theme">
             <li><button role="radio" data-header-theme="default" aria-checked="true">OS設定</button></li>
             <li><button role="radio" data-header-theme="light" aria-checked="false">ライト</button></li>
             <li><button role="radio" data-header-theme="dark" aria-checked="false">ダーク</button></li>
           </ul>
-          <ul role="radiogroup">
-            <li><button role="radio" data-header-theme="on" aria-checked="true">CSS有効</button></li>
-            <li><button role="radio" data-header-theme="off" aria-checked="false">CSS無効</button></li>
+        </div>
+      </details>
+      <details>
+        <summary id="setting-css">CSS</summary>
+        <div class="Header__Popup" data-details-content>
+          <ul role="radiogroup" aria-labelledby="setting-css">
+            <li><button role="radio" data-header-theme="on" aria-checked="true">有効</button></li>
+            <li><button role="radio" data-header-theme="off" aria-checked="false">無効</button></li>
           </ul>
         </div>
       </details>
