@@ -17,7 +17,8 @@
     "scaffdog",
     "stylelint",
     "tailwindcss",
-    "vite"
+    "vite",
+    "Zenn"
   ],
   "enableFiletypes": [
     "astro"

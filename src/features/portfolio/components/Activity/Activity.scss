@@ -9,7 +9,9 @@
   counter-reset: work-count;
   @include pc {
     display: grid;
+    grid-template-rows: 60px auto;
     grid-template-columns: repeat(2, 1fr);
+    row-gap: 80px;
     column-gap: 5%;
     margin-block-start: 60px;
   }
@@ -19,6 +21,7 @@
   > li {
     position: relative;
     z-index: 0;
+    grid-row-end: span 2;
     padding-block-start: 80px;
     counter-increment: work-count;
     @include pc {
@@ -27,13 +30,11 @@
     @include sp {
       padding-inline-start: 40px;
     }
-    &:not(:first-child) {
-      @include pc {
-        margin-block-start: 120px;
-      }
-      @include sp {
-        margin-block-start: 40px;
-      }
+    &:nth-child(1) {
+      grid-row-start: 1;
+    }
+    &:nth-child(2) {
+      grid-row-start: 2;
     }
 
     &::before {

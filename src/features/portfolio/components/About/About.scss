@@ -43,6 +43,9 @@
 }
 .About__Paragraph {
   line-height: 2.3;
+  strong {
+    font-size: 1.5em;
+  }
 }
 .About__List {
   max-width: 60em;
