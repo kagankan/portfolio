@@ -61,4 +61,4 @@ jobs:
     needs: build
     steps:
       - name: Lint
-        run: npm run list:dist
+        run: npm run lint:dist
