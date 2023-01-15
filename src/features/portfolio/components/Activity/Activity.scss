@@ -1,10 +1,10 @@
-.Work__Inner {
+.Activity__Inner {
   position: relative;
   z-index: 0;
   padding-block: 120px;
   padding-inline: 5%;
 }
-.Work__List {
+.Activity__List {
   max-width: 1000px;
   margin-block-start: 60px;
   counter-reset: work-count;
@@ -67,7 +67,7 @@
   }
 }
 
-.Work__ClientWork {
+.Activity__ClientWork {
   margin-block-start: 120px;
   text-align: center;
   p {
@@ -94,7 +94,7 @@
   }
 }
 
-.Work__DecorationBox {
+.Activity__DecorationBox {
   --block-size: min(200px + (100vw - 400px) * 0.25, 500px);
   --rect-size: 40%;
   position: absolute;
