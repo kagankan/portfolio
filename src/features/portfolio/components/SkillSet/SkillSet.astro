@@ -92,13 +92,13 @@ const skillSet = [
 <Section label="Skill Set" id="skill">
   <div class="SkillSet__Inner">
     <HeadingPrimary decoration="Skill Set">スキルセット</HeadingPrimary>
-    <p>
+    <p data-scroll-fade>
       得意としている主な技術分野・ライブラリの紹介です。<br
       />技術やライブラリを擬人化して接しがちなこともあり、「どれだけ親しみを持っているか」や「どれだけ積極的に情報を仕入れているか」を「親密度」という基準で評価しています。<br
       />
       また、期間は実務で扱ったことのある年数です。
     </p>
-    <ul class="SkillSetList">
+    <ul class="SkillSetList" data-scroll-fade>
       {
         skillSet.map((item) => (
           <li>

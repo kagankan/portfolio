@@ -11,15 +11,15 @@ import "./About.scss";
 <Section label="About Me" id="about" class="About">
   <div class="About__Inner">
     <HeadingPrimary decoration="About Me">自己紹介</HeadingPrimary>
-    <p class="About__Paragraph">
+    <p class="About__Paragraph" data-scroll-fade>
       <strong>岸嘉丸（きしよしまる）</strong>
     </p>
-    <p class="About__Paragraph">
+    <p class="About__Paragraph" data-scroll-fade>
       1997年東京都生まれ。中学生時代、Excelでゲームを作ろうとプログラミングを始めたことをきっかけに情報技術に興味を持ちました。<br
       />高校・大学で情報工学を学んだのち、2020年から制作会社でフロントエンドエンジニアとしてWeb制作を担当しています。
     </p>
     <ul class="About__List">
-      <li class="About__ListItem">
+      <li class="About__ListItem" data-scroll-fade>
         <h3>伝えることに<span class="pc:tw-inline-block">興味があります</span></h3>
         <Img src={image1} alt="" height="120" />
         <p>
@@ -28,15 +28,16 @@ import "./About.scss";
           Web制作の仕事を通じてクライアントの思いをサイトとして表現しているのはもちろんのこと、自分の知識を伝える個人的な活動として、Zennへの記事投稿を行ったり、小学校でプログラミング教室を開催したりしています。
         </p>
       </li>
-      <li class="About__ListItem">
+      <li class="About__ListItem" data-scroll-fade>
         <h3>表現とアクセシビリティの<span class="pc:tw-inline-block">両立を目指しています</span></h3>
         <Img src={image2} alt="" height="120" />
         <p>
           ビジュアル表現やアニメーション演出は伝えたい印象を表現する上で重要です。しかし、それによってユーザビリティやアクセシビリティを損ねてはそもそも使えないサイトになってしまいます。
-          これらの両立を実現するために、技術を磨き続けています。
+          これらの両立を実現するための技術を研究しています。<br />
+          このサイトに実装している「アニメーションオフ」機能はその一つです。デフォルトではスクロールに合わせてコンテンツがフェードインしますが、「オフ」にすると無効化できます。
         </p>
       </li>
-      <li class="About__ListItem">
+      <li class="About__ListItem" data-scroll-fade>
         <h3>ピクセルパーフェクトは、<span class="pc:tw-inline-block"><em>あえて</em>目指しません</span></h3>
         <Img src={image3} alt="" height="120" />
         <p>

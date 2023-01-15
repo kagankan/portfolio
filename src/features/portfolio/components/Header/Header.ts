@@ -1,6 +1,6 @@
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { themeStorage } from "@/utils";
+import { isReducedMotion, themeStorage } from "@/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -71,6 +71,10 @@ const disableGsap = () => {
 const enableGsap = () => {
   ScrollTrigger.getAll().forEach((scrollTrigger) => {
     scrollTrigger.enable();
+    const animation = scrollTrigger.animation;
+    if (animation) {
+      animation.progress(0);
+    }
   });
 };
 
@@ -88,7 +92,11 @@ const commands = {
   "motion-default": () => {
     themeStorage.remove("reduced-motion");
     document.documentElement.removeAttribute("data-motion");
-    enableGsap();
+    if (isReducedMotion()) {
+      disableGsap();
+    } else {
+      enableGsap();
+    }
   },
   default: () => {
     themeStorage.remove("color-scheme");
