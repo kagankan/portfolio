@@ -4,7 +4,7 @@ import { themeStorage } from "@/utils";
 
 gsap.registerPlugin(ScrollTrigger);
 
-// メニュー開閉
+// SPメニュー開閉
 const navToggle = document.querySelector<HTMLButtonElement>("[data-header-nav-toggle]");
 if (navToggle) {
   const targetId = navToggle.getAttribute("aria-controls");
@@ -146,3 +146,15 @@ document.querySelectorAll("[data-header-theme]").forEach((button) => {
     document.querySelector<HTMLElement>(`[data-header-theme="light"]`)?.click();
   }
 }
+
+document.querySelectorAll<HTMLDetailsElement>(".Header details").forEach((details) => {
+  // 外をクリックで閉じる
+  document.addEventListener("click", (e) => {
+    const target = e.target;
+    if (target instanceof HTMLElement) {
+      if (!details.contains(target)) {
+        details.open = false;
+      }
+    }
+  });
+});
