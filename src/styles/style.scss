@@ -1,5 +1,5 @@
 // リセットCSSにはdestyle.cssを使用します。
-// 他のリセットCSSがブラウザ間
+// 他のリセットCSSがブラウザ間の差を埋めるだけであることが多いのに対し、destyle.cssはユーザーエージェントスタイルを完全に打ち消すことができるためです（特にbutton要素のスタイルで違いが大きい）
 @use "node_modules/destyle.css/destyle.css";
 
 @use "./global/base.scss";
