@@ -59,6 +59,31 @@ ScrollTrigger.create({
   toggleClass: { targets: ".Header", className: "is-scroll" },
 });
 
+const resetReducedMotionFromStorage = () => {
+  const selectedReducedMotion = themeStorage.get("reduced-motion");
+  if (selectedReducedMotion === "reduce") {
+    document.querySelector<HTMLElement>(`[data-header-theme="motion-disable"]`)?.click();
+  } else if (selectedReducedMotion === "no-preference") {
+    document.querySelector<HTMLElement>(`[data-header-theme="motion-enable"]`)?.click();
+  } else {
+    document.querySelector<HTMLElement>(`[data-header-theme="motion-default"]`)?.click();
+  }
+};
+
+const resetColorSchemeFromStorage = () => {
+  const selectedColorScheme = themeStorage.get("color-scheme");
+  if (selectedColorScheme === "dark") {
+    document.querySelector<HTMLElement>(`[data-header-theme="dark"]`)?.click();
+  } else if (selectedColorScheme === "light") {
+    document.querySelector<HTMLElement>(`[data-header-theme="light"]`)?.click();
+  } else {
+    document.querySelector<HTMLElement>(`[data-header-theme="default"]`)?.click();
+  }
+};
+
+resetReducedMotionFromStorage();
+resetColorSchemeFromStorage();
+
 const disableGsap = () => {
   ScrollTrigger.getAll().forEach((scrollTrigger) => {
     const animation = scrollTrigger.animation;
@@ -111,14 +136,21 @@ const commands = {
     document.documentElement.setAttribute("data-theme", "dark");
   },
   off: () => {
+    document.documentElement.setAttribute("data-css", "off");
     document.querySelectorAll<HTMLLinkElement>(`link[rel="stylesheet"]`).forEach((style) => {
       style.media = "not all";
     });
+
+    document.documentElement.setAttribute("data-motion", "reduce");
+    disableGsap();
   },
   on: () => {
+    document.documentElement.setAttribute("data-css", "on");
     document.querySelectorAll<HTMLLinkElement>(`link[rel="stylesheet"]`).forEach((style) => {
       style.removeAttribute("media");
     });
+
+    resetReducedMotionFromStorage();
   },
 } as const;
 
@@ -136,24 +168,6 @@ document.querySelectorAll("[data-header-theme]").forEach((button) => {
       });
   });
 });
-
-{
-  const selectedReducedMotion = themeStorage.get("reduced-motion");
-  if (selectedReducedMotion === "reduce") {
-    document.querySelector<HTMLElement>(`[data-header-theme="motion-disable"]`)?.click();
-  } else if (selectedReducedMotion === "no-preference") {
-    document.querySelector<HTMLElement>(`[data-header-theme="motion-enable"]`)?.click();
-  }
-}
-
-{
-  const selectedColorScheme = themeStorage.get("color-scheme");
-  if (selectedColorScheme === "dark") {
-    document.querySelector<HTMLElement>(`[data-header-theme="dark"]`)?.click();
-  } else if (selectedColorScheme === "light") {
-    document.querySelector<HTMLElement>(`[data-header-theme="light"]`)?.click();
-  }
-}
 
 document.querySelectorAll<HTMLDetailsElement>(".Header details").forEach((details) => {
   // 外をクリックで閉じる
