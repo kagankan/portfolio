@@ -11,7 +11,8 @@ document.querySelectorAll("[data-scroll-fade]").forEach((element) => {
       y: 0,
       scrollTrigger: {
         trigger: element,
-        start: "top 70%",
+        start: "top 80%",
+        fastScrollEnd: true,
       },
     }
   );
