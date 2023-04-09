@@ -1,5 +1,5 @@
 .About {
-  background-image: linear-gradient(var(--color-primary-light), var(--color-background));
+  background-image: linear-gradient(var(--color-accent-muted), var(--color-background));
 }
 .About__Inner {
   --after-block-size: 300px;
@@ -11,14 +11,20 @@
   padding-inline: var(--section-padding-inline);
   @include pc {
     padding-inline-end: 13%;
-    background-image:
-    //
-      linear-gradient(to right, transparent var(--right-start), var(--color-primary-dark) var(--right-start)),
-      linear-gradient(var(--color-primary), var(--color-primary-light), var(--color-primary-gray));
+    &::before {
+      position: absolute;
+      inset: 0;
+      display: block;
+      pointer-events: none;
+      content: "";
+      background-image: linear-gradient(
+        to right,
+        transparent var(--right-start),
+        var(--color-accent) var(--right-start)
+      );
+    }
   }
-  @include sp {
-    background-image: linear-gradient(var(--color-primary), var(--color-primary-light), var(--color-primary-gray));
-  }
+
   &::after {
     position: absolute;
     inset-inline: 0;
@@ -27,7 +33,7 @@
     block-size: var(--after-block-size);
     clip-path: polygon(0% 70%, 100% 0%, 100% 100%, 0% 100%);
     content: "";
-    background-color: var(--color-primary-dark);
+    background-color: var(--color-accent);
   }
 }
 .About__Paragraph {
@@ -41,16 +47,11 @@
   margin-block-start: 100px;
   counter-reset: about-count;
   > li {
-    position: relative;
-    z-index: 0;
-    padding-block-start: 60px;
+    display: flex;
+    flex-wrap: wrap;
+    column-gap: 20px;
+    align-content: flex-start;
     counter-increment: about-count;
-    @include pc {
-      padding-inline-start: min(16%, 80px);
-    }
-    @include sp {
-      padding-inline-start: 32px;
-    }
     &:not(:first-child) {
       @include pc {
         margin-block-start: 80px;
@@ -60,86 +61,91 @@
       }
     }
     &:nth-child(2) {
-      margin-inline-start: min((100vw - 500px) * 0.1, 20%);
+      margin-inline-start: clamp(0%, (100vw - 650px) * 0.2, 20%);
     }
     &:nth-child(3) {
-      margin-inline-start: min((100vw - 500px) * 0.05, 10%);
+      margin-inline-start: clamp(0%, (100vw - 650px) * 0.1, 10%);
     }
+
     &::before {
-      position: absolute;
-      z-index: -1;
+      flex-shrink: 0;
       font-family: var(--font-family-emphasis);
       font-size: 8rem;
-      color: var(--color-background-overlay);
+      color: var(--color-accent);
       content: counter(about-count, decimal-leading-zero);
-      inset-block-start: 0;
-      inset-inline-start: 0;
+    }
+
+    > :nth-child(1) {
+      flex-basis: 0;
+      flex-grow: 9999;
+      min-width: min(100%, 20em);
     }
   }
   h3 {
     font-size: 2rem;
     font-weight: bold;
     line-height: 2;
-    color: var(--color-secondary);
+    color: var(--color-foreground-emphasis);
   }
-  .About__ListItem {
-    display: grid;
+}
+
+.About__ListItem {
+  display: grid;
+  @include pc {
+    row-gap: 20px;
+    column-gap: 20px;
+  }
+  @include sp {
+    row-gap: 12px;
+  }
+  li:nth-child(1) & {
     @include pc {
-      row-gap: 20px;
-      column-gap: 20px;
+      grid-template:
+        "heading paragraph" auto
+        "image   paragraph" 1fr / 35% 1fr;
+    }
+  }
+  li:nth-child(2) & {
+    @include pc {
+      grid-template:
+        "heading   image"
+        "paragraph paragraph" /
+        1fr auto;
+    }
+  }
+  li:nth-child(3) & {
+    @include pc {
+      grid-template-areas:
+        "heading  "
+        "image    "
+        "paragraph";
+    }
+  }
+
+  h3 {
+    @include pc {
+      grid-area: heading;
+    }
+  }
+  img {
+    display: block;
+    max-width: 292px;
+    max-height: 150px;
+    object-fit: contain;
+    @include pc {
+      grid-area: image;
     }
     @include sp {
-      row-gap: 12px;
+      justify-self: center;
+      max-height: 100px;
     }
-    &:nth-child(1) {
-      @include pc {
-        grid-template:
-          "heading paragraph" auto
-          "image   paragraph" 1fr / 35% 1fr;
-      }
+    [data-theme="dark"] & {
+      filter: brightness(0) invert(1);
     }
-    &:nth-child(2) {
-      @include pc {
-        grid-template:
-          "heading   image"
-          "paragraph paragraph" /
-          1fr auto;
-      }
-    }
-    &:nth-child(3) {
-      @include pc {
-        grid-template-areas:
-          "heading  "
-          "image    "
-          "paragraph";
-      }
-    }
-
-    h3 {
-      @include pc {
-        grid-area: heading;
-      }
-    }
-    img {
-      display: block;
-      max-width: 292px;
-      max-height: 150px;
-      object-fit: contain;
-      @include pc {
-        grid-area: image;
-      }
-      @include sp {
-        justify-self: center;
-        max-height: 100px;
-      }
-      [data-theme="dark"] & {
-        filter: brightness(0) invert(1);
-      }
-    }
-    p {
-      @include pc {
-        grid-area: paragraph;
-      }
+  }
+  p {
+    @include pc {
+      grid-area: paragraph;
     }
   }
 }

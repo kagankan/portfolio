@@ -1,27 +1,16 @@
 .HeadingPrimary {
-  // 装飾目的のため、remを使用しないでも問題ない判断とする
-  --decoration-font-size: clamp(60px, (100vw - 1600px) * 0.16 + 240px, 240px);
-
   position: relative;
   z-index: 0;
-  padding: calc(var(--decoration-font-size) * 0.6) 0 0.5em calc(var(--decoration-font-size) * 0.2);
+  margin-block-end: 0.5em;
+  font-size: clamp(2rem, 12vw, 6rem);
   font-weight: bold;
-  color: var(--color-secondary);
-  @include pc {
-    font-size: 4.5rem;
-  }
-  @include sp {
-    font-size: 3rem;
-  }
+  color: var(--color-foreground-emphasis);
+}
 
-  [data-visual-only] {
-    position: absolute;
-    z-index: -1;
-    font-family: var(--font-family-emphasis);
-    font-size: var(--decoration-font-size);
-    color: var(--color-primary-light);
-    pointer-events: none;
-    inset-block-start: 0;
-    inset-inline-start: 0;
-  }
+.HeadingPrimary__Decoration {
+  padding-inline-start: 0.5em;
+  margin-block-end: 0.5em;
+  font-size: 0.3em;
+  font-weight: normal;
+  line-height: 1;
 }

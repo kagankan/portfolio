@@ -38,9 +38,9 @@
     clip-path: polygon(100% var(--hero-bg-y-1), 0% var(--hero-bg-y-2), 0% 100%, 100% 100%);
     background-image: linear-gradient(
       190deg,
-      var(--color-secondary),
-      var(--color-secondary-light),
-      var(--color-background)
+      var(--color-gradient-blue),
+      var(--color-gradient-blue-light),
+      var(--color-gradient-white)
     );
     mask-image: linear-gradient(to right, transparent 50%, #000 50%);
     mask-size: 200%;
@@ -48,14 +48,14 @@
   }
   &::after {
     clip-path: polygon(0% var(--hero-bg-y-2), 100% var(--hero-bg-y-3), 100% 100%, 0% 100%);
-    background-image: linear-gradient(190deg, var(--color-background) 50%, var(--color-primary-light));
+    background-image: linear-gradient(190deg, var(--color-gradient-white) 50%, var(--color-green-100));
     mask-image: linear-gradient(to right, #000 50%, transparent 50%);
     mask-size: 200%;
     mask-position: var(--hero-after-mask);
   }
 }
 .Hero__Mesh {
-  --line-color: #f3f3f3;
+  --line-color: var(--color-border);
   --mesh-size: 120px;
 
   position: absolute;
@@ -77,8 +77,8 @@
   --overlay-left: 0%;
   clip-path: polygon(0% 0%, 0% 110%, var(--clip-size) 110%, var(--clip-size) 0%);
   line-height: 1;
-  color: var(--color-secondary);
-  background-color: var(--color-primary-light);
+  color: var(--color-foreground-emphasis);
+  background-color: var(--color-accent-muted);
   @include pc {
     position: absolute;
     font-size: clamp(1.25rem, 0.4em, 3.2rem);
@@ -98,7 +98,7 @@
     inset-inline-start: var(--overlay-left);
     display: block;
     content: "";
-    background-color: var(--color-secondary);
+    background-color: var(--color-foreground-emphasis);
   }
 }
 .Hero__Heading {
@@ -113,7 +113,7 @@
 .Hero__Heading__Name {
   display: flex;
   flex-wrap: wrap;
-  color: var(--color-secondary);
+  color: var(--color-foreground-emphasis);
   @include pc {
     letter-spacing: 0.02em;
   }
@@ -129,12 +129,10 @@
   @include pc {
     justify-self: end;
     font-size: 0.75em;
-    color: var(--color-background);
   }
   @include sp {
     display: flex;
     justify-content: space-between;
     font-size: 0.5em;
-    color: var(--color-primary-dark);
   }
 }

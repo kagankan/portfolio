@@ -11,7 +11,7 @@
     0% 100%
   );
   background-color: var(--color-background);
-  background-image: linear-gradient(var(--color-primary-light), var(--color-background));
+  background-image: linear-gradient(var(--color-accent-muted), var(--color-background));
 }
 .Contact__Inner {
   padding-block-start: 80px;
@@ -19,7 +19,7 @@
   // padding-block-end: calc(var(--contact-cut-size) - 80px);
   padding-block-end: var(--contact-cut-size);
   padding-inline: var(--section-padding-inline);
-  background-image: linear-gradient(165deg, var(--color-primary), var(--color-primary-light));
+  background-image: linear-gradient(165deg, var(--color-accent), var(--color-accent-muted));
 }
 .Contact__List {
   display: grid;
@@ -45,7 +45,7 @@
     border-radius: 16px;
   }
   @include hover {
-    background-color: var(--color-secondary-light);
+    background-color: var(--color-foreground-emphasis-muted);
   }
   &::before {
     display: block;

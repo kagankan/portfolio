@@ -6,7 +6,7 @@ export type Props = {
 const { decoration } = Astro.props;
 ---
 
-<h2 class="HeadingPrimary" data-scroll-fade>
-  <span aria-hidden="true" data-visual-only={decoration}></span>
-  <slot />
-</h2>
+<hgroup class="HeadingPrimary" data-scroll-fade>
+  <p class="HeadingPrimary__Decoration">{decoration}</p>
+  <h2><slot /></h2>
+</hgroup>

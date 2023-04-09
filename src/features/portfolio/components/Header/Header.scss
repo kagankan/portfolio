@@ -53,7 +53,7 @@
     transition-duration: var(--transition-fast);
     transition-property: background-color;
     @include hover {
-      background-color: var(--color-secondary-light);
+      background-color: var(--color-foreground-emphasis-muted);
     }
     &::after {
       font-family: var(--font-family-emphasis);
@@ -110,19 +110,19 @@
     display: block;
     padding: 10px 16px 12px;
     font-weight: 700;
-    background-image: linear-gradient(to right, var(--color-secondary) 50%, transparent 50%);
+    background-image: linear-gradient(to right, var(--color-foreground-emphasis) 50%, transparent 50%);
     background-repeat: no-repeat;
     background-position: 100% bottom;
     background-size: 200% 1px;
     transition-duration: var(--transition-fast);
     transition-property: background-position;
     &[aria-current] {
-      color: var(--color-secondary);
+      color: var(--color-foreground-emphasis);
       @include pc {
-        border-block-start: 1px solid var(--color-secondary);
+        border-block-start: 1px solid var(--color-foreground-emphasis);
       }
       @include sp {
-        border-inline-start: 1px solid var(--color-secondary);
+        border-inline-start: 1px solid var(--color-foreground-emphasis);
       }
     }
     @include hover {
@@ -145,7 +145,7 @@
   details {
     position: relative;
     @include sp {
-      border: 1px solid var(--color-primary-gray);
+      border: 1px solid var(--color-border);
       border-radius: 8px;
     }
     summary {
@@ -161,7 +161,7 @@
       transition-property: color, background-color;
       @include pc {
         padding: 6px 12px;
-        border: 1px solid var(--color-primary-gray);
+        border: 1px solid var(--color-border);
         border-radius: 9999px;
       }
       @include sp {
@@ -170,7 +170,7 @@
       }
       @include hover {
         color: var(--color-background);
-        background-color: var(--color-secondary);
+        background-color: var(--color-foreground-emphasis);
       }
       &::after {
         display: inline-block;
@@ -212,7 +212,7 @@
         height: 1px;
         margin-inline: auto;
         content: "";
-        background-color: var(--color-primary-gray);
+        background-color: var(--color-border);
       }
     }
   }
@@ -234,15 +234,18 @@
           height: 1px;
           margin-inline: auto;
           content: "";
-          background-color: var(--color-primary-gray);
+          background-color: var(--color-border);
           inset-block-start: 0;
         }
       }
     }
     button {
+      display: grid;
+      grid-template-columns: 1em 1fr;
+      column-gap: 4px;
       width: 100%;
       padding-block: 12px;
-      padding-inline: 1.5em 16px;
+      padding-inline: 16px;
       font-size: 0.9rem;
       border: 1px solid transparent;
       border-radius: 5px;
@@ -251,11 +254,22 @@
       @include hover {
         background-color: rgb(0, 0, 0, 0.1);
       }
+      &::before {
+        display: block;
+        width: 1em;
+        height: 1em;
+        content: "";
+        background-color: currentColor;
+        mask-image: var(--icon-check);
+        mask-repeat: no-repeat;
+        mask-position: center;
+        opacity: 0;
+        mask-size: 1.2em;
+      }
       &[aria-checked="true"] {
-        background-image: var(--icon-check);
-        background-repeat: no-repeat;
-        background-position: 4px center;
-        background-size: 1.2em;
+        &::before {
+          opacity: 1;
+        }
       }
     }
   }

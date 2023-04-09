@@ -8,7 +8,7 @@ import Section from "../Section/Section.astro";
 import "./About.scss";
 ---
 
-<Section label="About Me" id="about" class="About">
+<Section label="自己紹介" id="about" class="About">
   <div class="About__Inner">
     <HeadingPrimary decoration="About Me">自己紹介</HeadingPrimary>
     <p class="About__Paragraph" data-scroll-fade>
@@ -20,31 +20,37 @@ import "./About.scss";
       />インターネット上では「かがん」という名前で活動しています。
     </p>
     <ul class="About__List">
-      <li class="About__ListItem" data-scroll-fade>
-        <h3>伝えることに<span class="pc:tw-inline-block">興味があります</span></h3>
-        <Img src={image1} alt="" height="120" />
-        <p>
-          情報をわかりやすく伝えること・表現することが好きです。また、それが役に立ったり、楽しんでもらえたりすることが喜びです。<br
-          />
-          Web制作の仕事を通じてクライアントの思いをサイトとして表現しているのはもちろんのこと、自分の知識を伝える個人的な活動として、Zennへの記事投稿を行ったり、小学校でプログラミング教室を開催したりしています。
-        </p>
+      <li data-scroll-fade>
+        <div class="About__ListItem">
+          <h3>伝えることに<span class="pc:tw-inline-block">興味があります</span></h3>
+          <Img src={image1} alt="" height="120" />
+          <p>
+            情報をわかりやすく伝えること・表現することが好きです。また、それが役に立ったり、楽しんでもらえたりすることが喜びです。<br
+            />
+            Web制作の仕事を通じてクライアントの思いをサイトとして表現しているのはもちろんのこと、自分の知識を伝える個人的な活動として、Zennへの記事投稿を行ったり、小学校でプログラミング教室を開催したりしています。
+          </p>
+        </div>
       </li>
-      <li class="About__ListItem" data-scroll-fade>
-        <h3>表現とアクセシビリティの<span class="pc:tw-inline-block">両立を目指しています</span></h3>
-        <Img src={image2} alt="" height="120" />
-        <p>
-          ビジュアル表現やアニメーション演出は伝えたい印象を表現する上で重要です。しかし、それによってユーザビリティやアクセシビリティを損ねてはそもそも使えないサイトになってしまいます。
-          これらの両立を実現するための技術を模索しています。<br />
-          このサイトに実装している「アニメーションオフ」機能はその一つです。デフォルトではスクロールに合わせてコンテンツがフェードインしますが、「オフ」にすると無効化できます。
-        </p>
+      <li data-scroll-fade>
+        <div class="About__ListItem">
+          <h3>表現とアクセシビリティの<span class="pc:tw-inline-block">両立を目指しています</span></h3>
+          <Img src={image2} alt="" height="120" />
+          <p>
+            ビジュアル表現やアニメーション演出は伝えたい印象を表現する上で重要です。しかし、それによってユーザビリティやアクセシビリティを損ねてはそもそも使えないサイトになってしまいます。
+            これらの両立を実現するための技術を模索しています。<br />
+            このサイトに実装している「アニメーションオフ」機能はその一つです。デフォルトではスクロールに合わせてコンテンツがフェードインしますが、「オフ」にすると無効化できます。
+          </p>
+        </div>
       </li>
-      <li class="About__ListItem" data-scroll-fade>
-        <h3>ピクセルパーフェクトは、<span class="pc:tw-inline-block"><em>あえて</em>目指しません</span></h3>
-        <Img src={image3} alt="" height="120" />
-        <p>
-          デザインデータを再現することはもちろん大前提。ですが、「どんな画面幅でもうまく表示されること」や「実装をシンプルに保つこと」なども考慮すると、最適な結果は他にある場合もあります。
-          盲目的にデザインをなぞるのではなく、最良を目指して検討・議論しながら実装します。
-        </p>
+      <li data-scroll-fade>
+        <div class="About__ListItem">
+          <h3>ピクセルパーフェクトは、<span class="pc:tw-inline-block"><em>あえて</em>目指しません</span></h3>
+          <Img src={image3} alt="" height="120" />
+          <p>
+            デザインデータを再現することはもちろん大前提。ですが、「どんな画面幅でもうまく表示されること」や「実装をシンプルに保つこと」なども考慮すると、最適な結果は他にある場合もあります。
+            盲目的にデザインをなぞるのではなく、最良を目指して検討・議論しながら実装します。
+          </p>
+        </div>
       </li>
     </ul>
   </div>
