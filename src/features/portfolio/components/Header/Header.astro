@@ -1,6 +1,11 @@
 ---
 import "./Header.scss";
-const navId = "header-nav";
+import { randomUUID } from "node:crypto";
+
+const navId = randomUUID();
+const animationId = randomUUID();
+const themeId = randomUUID();
+const cssId = randomUUID();
 ---
 
 <header class="Header">
@@ -22,9 +27,9 @@ const navId = "header-nav";
     </ul>
     <div class="Header__Controls">
       <details>
-        <summary id="setting-animation">アニメーション</summary>
+        <summary id={animationId}>アニメーション</summary>
         <div class="Header__Popup" data-details-content>
-          <ul role="radiogroup" aria-labelledby="setting-animation">
+          <ul role="radiogroup" aria-labelledby={animationId}>
             <li><button role="radio" data-header-theme="motion-default" aria-checked="true">OS設定</button></li>
             <li><button role="radio" data-header-theme="motion-enable" aria-checked="false">オン</button></li>
             <li><button role="radio" data-header-theme="motion-disable" aria-checked="false">オフ</button></li>
@@ -32,9 +37,9 @@ const navId = "header-nav";
         </div>
       </details>
       <details>
-        <summary id="setting-theme">テーマ</summary>
+        <summary id={themeId}>テーマ</summary>
         <div class="Header__Popup" data-details-content>
-          <ul role="radiogroup" aria-labelledby="setting-theme">
+          <ul role="radiogroup" aria-labelledby={themeId}>
             <li><button role="radio" data-header-theme="default" aria-checked="true">OS設定</button></li>
             <li><button role="radio" data-header-theme="light" aria-checked="false">ライト</button></li>
             <li><button role="radio" data-header-theme="dark" aria-checked="false">ダーク</button></li>
@@ -42,9 +47,9 @@ const navId = "header-nav";
         </div>
       </details>
       <details>
-        <summary id="setting-css">CSS</summary>
+        <summary id={cssId}>CSS</summary>
         <div class="Header__Popup" data-details-content>
-          <ul role="radiogroup" aria-labelledby="setting-css">
+          <ul role="radiogroup" aria-labelledby={cssId}>
             <li><button role="radio" data-header-theme="on" aria-checked="true">有効</button></li>
             <li><button role="radio" data-header-theme="off" aria-checked="false">無効</button></li>
           </ul>
